@@ -1,0 +1,17 @@
+# ::andromeda::test::build
+
+package(
+    default_visibility = ["//visibility:public"],
+    licenses = ["notice"],
+)
+
+cc_test(
+    name = "build",
+    srcs = [
+        "build.cc",
+    ],
+    deps = [
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+)

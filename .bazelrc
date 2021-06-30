@@ -1,0 +1,121 @@
+
+###############################################################################
+# Aliases                                                            [ Config ]
+
+###############################################################################
+# Toolchains                                                         [ Config ]
+
+###############################################################################
+# Flags                                                              [ Config ]
+
+build --cxxopt=-std=c++20
+build --repo_env=CC=clang
+
+# Required Flags                                                   [ Required ]
+
+build:debug --compilation_mode=dbg
+build:debug --config=assert:all
+build:debug --config=log:trace
+build:debug --config=warning:all
+
+build:release --compilation_mode=opt
+build:release --config=assert:all
+build:release --config=log:critical
+build:release --config=warning:all
+
+# Optional Flags                                                   [ Optional ]
+
+build:warning:all --cxxopt=-Wall
+build:warning:all --cxxopt=-Wextra
+build:warning:all --cxxopt=-Wpedantic
+
+# API                                                                   [ API ]
+
+build:graphics:vulkan --features=vulkan
+
+# Logging                                                           [ Logging ]
+
+build:log:trace --cxxopt=-ULOG_LEVEL
+build:log:trace --cxxopt=-DLOG_LEVEL=6
+
+build:log:debug --cxxopt=-ULOG_LEVEL
+build:log:debug --cxxopt=-DLOG_LEVEL=5
+
+build:log:info --cxxopt=-ULOG_LEVEL
+build:log:info --cxxopt=-DLOG_LEVEL=4
+
+build:log:warn --cxxopt=-ULOG_LEVEL
+build:log:warn --cxxopt=-DLOG_LEVEL=3
+
+build:log:error --cxxopt=-ULOG_LEVEL
+build:log:error --cxxopt=-DLOG_LEVEL=2
+
+build:log:critical --cxxopt=-ULOG_LEVEL
+build:log:critical --cxxopt=-DLOG_LEVEL=1
+
+build:log:none --cxxopt=-ULOG_LEVEL
+build:log:none --cxxopt=-DLOG_LEVEL=0
+
+# Assertions                                                     [ Assertions ]
+
+build:assert:none --cxxopt=-ULOG_ASSERTIONS
+
+build:assert:all --cxxopt=-ULOG_LEVEL
+build:assert:all --cxxopt=-DLOG_LEVEL=2
+build:assert:all --cxxopt=-ULOG_ASSERTIONS
+build:assert:all --cxxopt=-DLOG_ASSERTIONS
+
+###############################################################################
+# Options for building with address sanitizer.
+# https://github.com/google/sanitizers/wiki/AddressSanitizer
+###############################################################################
+
+# ASAN (address sanitizer)
+# https://clang.llvm.org/docs/AddressSanitizer.html
+build:sanitizer:asan --config=sanitizer
+build:sanitizer:asan --features=asan
+build:sanitizer:asan --cxxopt=-fsanitize=address
+build:sanitizer:asan --cxxopt=-fsanitize-address-use-after-scope
+build:sanitizer:asan --linkopt=-fsanitize=address
+build:sanitizer:asan --cc_output_directory_tag=asan
+build:sanitizer:asan --cxxopt=-DADDRESS_SANITIZER
+
+# MSAN (memory sanitizer)
+# https://clang.llvm.org/docs/MemorySanitizer.html
+build:sanitizer:msan --config=sanitizer
+build:sanitizer:msan --features=msan
+build:sanitizer:msan --cxxopt=-fsanitize=memory
+build:sanitizer:msan --cxxopt=-fsanitize-memory-track-origins
+build:sanitizer:msan --linkopt=-fsanitize=memory
+build:sanitizer:msan --cc_output_directory_tag=msan
+build:sanitizer:msan --cxxopt=-DMEMORY_SANITIZER
+
+# TSAN (thread sanitizer)
+# https://clang.llvm.org/docs/ThreadSanitizer.html
+build:sanitizer:tsan --config=sanitizer
+build:sanitizer:tsan --features=tsan
+build:sanitizer:tsan --cxxopt=-fsanitize=thread
+build:sanitizer:tsan --linkopt=-fsanitize=thread
+build:sanitizer:tsan --cc_output_directory_tag=tsan
+build:sanitizer:tsan --cxxopt=-DTHREAD_SANITIZER
+
+# UBSAN (undefined behavior sanitizer)
+# https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html
+build:sanitizer:ubsan --config=sanitizer
+build:sanitizer:ubsan --features=ubsan
+build:sanitizer:ubsan --cxxopt=-fsanitize=undefined
+build:sanitizer:ubsan --linkopt=-fsanitize=undefined
+build:sanitizer:ubsan --linkopt=-lubsan
+build:sanitizer:ubsan --cc_output_directory_tag=ubsan
+
+# Don't strip debug info
+build:sanitizer --strip=never
+build:sanitizer --force_ignore_dash_static
+build:sanitizer --test_timeout=120,600,1800,-1
+build:sanitizer --cxxopt=-fno-omit-frame-pointer
+
+###############################################################################
+# .bazelrc workspace & user overrides                                 [ Bazel ]
+
+try-import %workspace/configured.bazelrc
+try-import %workspace/user.bazelrc
