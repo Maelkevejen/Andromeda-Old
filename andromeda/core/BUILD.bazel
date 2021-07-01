@@ -1,0 +1,33 @@
+# ::andromeda::core
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "core",
+    hdrs = [
+        "core.hpp",
+    ],
+)
+
+cc_library(
+    name = "instance",
+    hdrs = [
+        "instance.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core",
+        "@andromeda//andromeda/core/system/logging:log",
+    ],
+)
+
+cc_library(
+    name = "link",
+    hdrs = [
+        "link.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core:instance",
+    ],
+)

@@ -1,0 +1,30 @@
+# ::andromeda::test::core
+
+package(
+    default_visibility = ["//visibility:public"],
+    licenses = ["notice"],
+)
+
+cc_test(
+    name = "core",
+    srcs = [
+        "core.cc",
+    ],
+    deps = [
+        "@andromeda//andromeda/core",
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "instance",
+    srcs = [
+        "instance.cc",
+    ],
+    deps = [
+        "@andromeda//andromeda/core:instance",
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+)
