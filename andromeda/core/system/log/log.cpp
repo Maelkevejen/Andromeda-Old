@@ -6,7 +6,7 @@
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/sinks/rotating_file_sink.h>
 
-namespace Andromeda::Logging {
+namespace Andromeda::System {
     void Log::initialize(Log::Configuration configuration) {
         spdlog::init_thread_pool(configuration.threads, configuration.workers);
 
@@ -28,4 +28,4 @@ namespace Andromeda::Logging {
 
         spdlog::set_default_logger(s_Core);
     }
-} /* Andromeda::Logging */
+} /* Andromeda::System */

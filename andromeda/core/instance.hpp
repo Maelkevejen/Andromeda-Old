@@ -18,7 +18,7 @@ namespace Andromeda {
         };
         struct Configuration {
             Instance::Meta meta;
-            Logging::Log::Configuration log;
+            System::Log::Configuration log;
         };
       public:
         virtual ~Instance() = default;

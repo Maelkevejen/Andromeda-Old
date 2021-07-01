@@ -4,7 +4,7 @@
 
 TEST(System, Log) {
     EXPECT_NO_THROW({
-        Andromeda::Logging::Log::initialize({
+        Andromeda::System::Log::initialize({
             .name = "test",
             .log_directory = "logging/test.log",
             .max_log_files = 3,

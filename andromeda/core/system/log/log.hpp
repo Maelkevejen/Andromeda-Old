@@ -7,7 +7,7 @@
 
 #include "andromeda/core/core.hpp"
 
-namespace Andromeda::Logging {
+namespace Andromeda::System {
     class Log {
       public:
         struct Configuration {
@@ -34,7 +34,7 @@ namespace Andromeda::Logging {
         inline static std::shared_ptr<spdlog::logger> s_Core = nullptr;
         inline static std::shared_ptr<spdlog::logger> s_Instance = nullptr;
     };
-} /* Andromeda::Logging */
+} /* Andromeda::System */
 
 #define LOG_LEVEL_NONE     0
 #define LOG_LEVEL_CRITICAL 1
@@ -71,14 +71,14 @@ namespace Andromeda::Logging {
 #if LOG_LEVEL >= LOG_LEVEL_CRITICAL
 #undef ANDROMEDA_CORE_CRITICAL
 #undef ANDROMEDA_CRITICAL
-#define ANDROMEDA_CORE_CRITICAL(...)    ::Andromeda::Logging::Log::core()->critical(__VA_ARGS__)
-#define ANDROMEDA_CRITICAL(...)         ::Andromeda::Logging::Log::instance()->critical(__VA_ARGS__)
+#define ANDROMEDA_CORE_CRITICAL(...)    ::Andromeda::System::Log::core()->critical(__VA_ARGS__)
+#define ANDROMEDA_CRITICAL(...)         ::Andromeda::System::Log::instance()->critical(__VA_ARGS__)
 
 #if LOG_LEVEL >= LOG_LEVEL_ERROR
 #undef ANDROMEDA_CORE_ERROR
 #undef ANDROMEDA_ERROR
-#define ANDROMEDA_CORE_ERROR(...)    ::Andromeda::Logging::Log::core()->error(__VA_ARGS__)
-#define ANDROMEDA_ERROR(...)         ::Andromeda::Logging::Log::instance()->error(__VA_ARGS__)
+#define ANDROMEDA_CORE_ERROR(...)    ::Andromeda::System::Log::core()->error(__VA_ARGS__)
+#define ANDROMEDA_ERROR(...)         ::Andromeda::System::Log::instance()->error(__VA_ARGS__)
 #endif
 
 #ifdef LOG_ASSERTIONS
@@ -95,21 +95,21 @@ namespace Andromeda::Logging {
 #if LOG_LEVEL >= LOG_LEVEL_WARN
 #undef ANDROMEDA_CORE_WARN
 #undef ANDROMEDA_WARN
-#define ANDROMEDA_CORE_WARN(...)    ::Andromeda::Logging::Log::core()->warn(__VA_ARGS__)
-#define ANDROMEDA_WARN(...)         ::Andromeda::Logging::Log::instance()->warn(__VA_ARGS__)
+#define ANDROMEDA_CORE_WARN(...)    ::Andromeda::System::Log::core()->warn(__VA_ARGS__)
+#define ANDROMEDA_WARN(...)         ::Andromeda::System::Log::instance()->warn(__VA_ARGS__)
 #endif
 
 #if LOG_LEVEL >= LOG_LEVEL_INFO
 #undef ANDROMEDA_CORE_INFO
 #undef ANDROMEDA_INFO
-#define ANDROMEDA_CORE_INFO(...)    ::Andromeda::Logging::Log::core()->info(__VA_ARGS__)
-#define ANDROMEDA_INFO(...)         ::Andromeda::Logging::Log::instance()->info(__VA_ARGS__)
+#define ANDROMEDA_CORE_INFO(...)    ::Andromeda::System::Log::core()->info(__VA_ARGS__)
+#define ANDROMEDA_INFO(...)         ::Andromeda::System::Log::instance()->info(__VA_ARGS__)
 #endif
 
 #if LOG_LEVEL >= LOG_LEVEL_TRACE
 #undef ANDROMEDA_CORE_TRACE
 #undef ANDROMEDA_TRACE
-#define ANDROMEDA_CORE_TRACE(...)    ::Andromeda::Logging::Log::core()->trace(__VA_ARGS__)
-#define ANDROMEDA_TRACE(...)         ::Andromeda::Logging::Log::instance()->trace(__VA_ARGS__)
+#define ANDROMEDA_CORE_TRACE(...)    ::Andromeda::System::Log::core()->trace(__VA_ARGS__)
+#define ANDROMEDA_TRACE(...)         ::Andromeda::System::Log::instance()->trace(__VA_ARGS__)
 #endif
 #endif
