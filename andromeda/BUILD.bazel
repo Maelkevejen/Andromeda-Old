@@ -4,3 +4,13 @@ package(
     default_visibility = ["//visibility:public"],
     licenses = ["notice"],
 )
+
+cc_library(
+    name = "andromeda",
+    hdrs = ["andromeda.hpp"],
+    deps = [
+        "@andromeda//andromeda/core",
+        "@andromeda//andromeda/core:instance",
+        "@andromeda//andromeda/core/system/logging:log",
+    ],
+)

@@ -1,0 +1,19 @@
+# ::andromeda::core::system::logging
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "log",
+    srcs = [
+        "log.cpp",
+    ],
+    hdrs = [
+        "log.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core",
+        "@spdlog",
+    ],
+)
