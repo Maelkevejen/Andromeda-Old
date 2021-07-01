@@ -12,6 +12,6 @@ TEST(System, Log) {
             .threads = 8096,
             .workers = 1,
         });
-        ANDROMEDA_CORE_INFO("[ Instantiating / Andromeda / System / Log ]");
+        ANDROMEDA_CORE_INFO("[ Initialized / Andromeda / System / Log ]");
     });
 }
