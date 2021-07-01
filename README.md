@@ -41,7 +41,7 @@
 
 ## Installation <img src="https://img.shields.io/github/workflow/status/robbie-vanderzee/andromeda/Continuous%20Integration?style=for-the-badge" align="right" alt="Build status badge" />
 
-*Andromeda* is currently only available from source via [Bazel][bazel-build] (v 4.0.0) for multi-platform compilation and scaling. It targets a static library which can then be included to create *Andromeda* instances. The build is configurable with the following flags:
+*Andromeda* is currently only available from source via [Bazel][bazel-build] (v 4.1.0) for multi-platform compilation and scaling. It targets a static library which can then be included to create *Andromeda* instances. The build is configurable with the following flags:
 <table>
 <tr>
 <td>
