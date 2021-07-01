@@ -18,7 +18,7 @@ cc_library(
     ],
     deps = [
         "@andromeda//andromeda/core",
-        "@andromeda//andromeda/core/system/logging:log",
+        "@andromeda//andromeda/core/system/log",
     ],
 )
 

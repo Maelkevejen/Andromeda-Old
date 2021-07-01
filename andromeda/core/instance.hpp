@@ -3,7 +3,7 @@
 #include <memory>
 #include <string>
 
-#include "andromeda/core/system/logging/log.hpp"
+#include "andromeda/core/system/log/log.hpp"
 
 namespace Andromeda {
     class Instance {

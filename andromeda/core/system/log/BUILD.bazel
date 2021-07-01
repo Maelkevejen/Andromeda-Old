@@ -1,4 +1,4 @@
-# ::andromeda::core::system::logging
+# ::andromeda::core::system::log
 
 package(
     default_visibility = ["//visibility:public"],
