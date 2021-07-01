@@ -17,7 +17,7 @@
 - [Features](#features)
   - [Implemented](#implemented)
   - [Unimplemented](#unimplemented)
-- [Installation <img src="https://img.shields.io/buildkite/60c98de5f1a7a620eebcb42abddcb9cc68c4cff7cea74d09fd?style=for-the-badge&label=Build" align="right" alt="Build status badge" />](#installation-)
+- [Installation <img src="https://img.shields.io/github/workflow/status/robbie-vanderzee/andromeda/Continuous%20Integration?style=for-the-badge" align="right" alt="Build status badge" />](#installation-)
     - [*Andromeda* **build** with Bazel](#andromeda-build-with-bazel)
     - [*Andromeda* **test** build with Bazel](#andromeda-test-build-with-bazel)
   - [Archlinux](#archlinux-)
@@ -39,7 +39,7 @@
 
 ### Unimplemented
 
-## Installation <img src="https://img.shields.io/buildkite/60c98de5f1a7a620eebcb42abddcb9cc68c4cff7cea74d09fd?style=for-the-badge&label=Build" align="right" alt="Build status badge" />
+## Installation <img src="https://img.shields.io/github/workflow/status/robbie-vanderzee/andromeda/Continuous%20Integration?style=for-the-badge" align="right" alt="Build status badge" />
 
 *Andromeda* is currently only available from source via [Bazel][bazel-build] (v 4.0.0) for multi-platform compilation and scaling. It targets a static library which can then be included to create *Andromeda* instances. The build is configurable with the following flags:
 <table>
