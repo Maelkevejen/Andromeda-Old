@@ -44,7 +44,7 @@ TEST(Instance, Create) {
         auto instance = Andromeda::instantiate();
         Andromeda::Logging::Log::initialize({instance->configuration().log});
 
-        ANDROMEDA_CORE_TRACE("[ Initialized / Andromeda ]");
+        ANDROMEDA_CORE_TRACE("[ Initializing / Andromeda ]");
         ANDROMEDA_CORE_INFO("[ Instantiating / Andromeda / {0} ... ]", instance->configuration().meta.name);
 
         instance->initialize();
