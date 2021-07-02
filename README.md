@@ -10,7 +10,7 @@
 
 </div>
  
-## Contents
+# Contents
 
 - [Contents](#contents)
 - [About](#about)
@@ -20,10 +20,10 @@
 - [Installation <img src="https://img.shields.io/github/workflow/status/robbie-vanderzee/andromeda/Continuous%20Integration?style=for-the-badge" align="right" alt="Build status badge" />](#installation-)
     - [*Andromeda* **build** with Bazel](#andromeda-build-with-bazel)
     - [*Andromeda* **test** build with Bazel](#andromeda-test-build-with-bazel)
-  - [Archlinux](#archlinux-)
+  - [Archlinux](#archlinux)
 - [License <img src="https://img.shields.io/github/license/robbie-vanderzee/andromeda?color=blue&style=for-the-badge" align="right" alt="License badge"/>](#license-)
 
-## About
+# About
 
 <table>
 <tr>
@@ -33,13 +33,21 @@
 </tr>
 </table>
 
-## Features
+# Features
 
-### Implemented
+## Implemented
 
-### Unimplemented
+<ul>
+<li>Instance</li>
+</ul>
 
-## Installation <img src="https://img.shields.io/github/workflow/status/robbie-vanderzee/andromeda/Continuous%20Integration?style=for-the-badge" align="right" alt="Build status badge" />
+## Unimplemented
+
+<ul>
+<li>Window Abstraction</li>
+</ul>
+
+# Installation <img src="https://img.shields.io/github/workflow/status/robbie-vanderzee/andromeda/Continuous%20Integration?style=for-the-badge" align="right" alt="Build status badge" />
 
 *Andromeda* is currently only available from source via [Bazel][bazel-build] (v 4.1.0) for multi-platform compilation and scaling. It targets a static library which can then be included to create *Andromeda* instances. The build is configurable with the following flags:
 <table>
@@ -69,7 +77,7 @@
 </tr>
 </table>
 
-#### *Andromeda* **build** with [Bazel][bazel-build]
+### *Andromeda* **build** with [Bazel][bazel-build]
 
 - `bazel build '...' --config=(debug|release) --config=graphics:(vulkan) --config=sanitizer:(asan|msan|ubsan|tsan) --config=log:(none|trace|debug|info|warn|error|critical) --config=assert:(none|all)`
 
@@ -77,17 +85,18 @@ The library will built in `bazel-bin/andromeda`. You can manually link your proj
 
 You may also test the current implementation for any configuration:
 
-#### *Andromeda* **test** build with [Bazel][bazel-build]
+### *Andromeda* **test** build with [Bazel][bazel-build]
 
 - `bazel test '...' -config=(debug|release) --config=graphics:(vulkan) --config=sanitizer:(asan|msan|ubsan|tsan) --config=log:(none|trace|debug|info|warn|error|critical) --config=assert:(none|all)`
 
-The latest test evaluation on common configurations is continuously integrated on [Github][github].
+The latest test evaluation on common configurations is continuously integrated, statically analyzed, and built on [Github][github] actions.
 
 <div align="center">Refer to the platform specific instructions if necessary.</div>
 
-### Archlinux <img src="https://img.shields.io/badge/-Archlinux-blue?style=for-the-badge&logo=arch-linux&logoColor=white" align="right" alt="Archlinux badge" />
+## Archlinux
+<img src="https://img.shields.io/badge/-Archlinux-blue?style=for-the-badge&logo=arch-linux&logoColor=white" align="right" alt="Archlinux badge" />
 
-*Andromeda* requires library linking with both the Window server library [GLFW][glfw] and a Graphics API ([Vulkan][vulkan]) as these are not built from source. ***These will eventually be built directly from source***.
+*Andromeda* requires library linking with both the Window server library [GLFW][glfw] and a Graphics API ([Vulkan][vulkan]) as these are not built from source.
 
 <table>
 <tr>
@@ -97,13 +106,15 @@ Installing [GLFW][glfw]:
 
 `pacman` can install GLFW on the core repository:
 
-- `sudo pacman -S glfw`
+- `sudo pacman -S glfw-wayland`
+- `doas pacman -S glfw-wayland`
+
 </td>
 </tr>
 <tr>
 <td>
 
-*Andromeda's* implementation of GLFW ***will eventually migrate to [Wayland][wayland]***, deprecating the `X-server` implementation.
+*Andromeda's* implementation of GLFW ***runs with [Wayland][wayland]***. The `X-server` implementation is deprecated.
 
 Installing [Vulkan][vulkan]:
 
@@ -116,7 +127,7 @@ Obtaining Vulkan depends on your graphics card manufacturer, as Vulkan implement
 </table>
 
 
-## License <img src="https://img.shields.io/github/license/robbie-vanderzee/andromeda?color=blue&style=for-the-badge" align="right" alt="License badge"/>
+# License <img src="https://img.shields.io/github/license/robbie-vanderzee/andromeda?color=blue&style=for-the-badge" align="right" alt="License badge"/>
 
 [MIT](LICENSE) © Robbie VanDerzee
 
@@ -128,7 +139,7 @@ Obtaining Vulkan depends on your graphics card manufacturer, as Vulkan implement
 Website References
 -->
 [bazel-build]:https://github.com/bazelbuild/bazel
-[github]:https://github.com/robbie-vanderzee/andromeda-alpha/actions/new
+[github]:https://github.com/robbie-vanderzee/andromeda/actions
 [vulkan]:https://www.khronos.org/vulkan/
 [glfw]:https://www.glfw.org/
 [wayland]:https://wiki.archlinux.org/index.php/Wayland

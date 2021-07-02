@@ -25,6 +25,12 @@ def configure_submodule_dependencies(repo_alias = "@andromeda", repo_path = "./"
 
     maybe(
         native.new_local_repository,
+        name = "glfw",
+        path = paths.join(repo_path, "includes/gtest"),
+    )
+
+    maybe(
+        native.new_local_repository,
         name = "spdlog",
         build_file = repo_alias + "//:build/includes/spdlog/BUILD.bazel",
         path = paths.join(repo_path, "includes/spdlog"),

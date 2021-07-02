@@ -1,0 +1,17 @@
+# ::build::includes::glfw
+
+package(
+    default_visibility = ["//visibility:public"],
+    licenses = ["notice"],
+)
+
+cc_library(
+    name = "glfw_hdrs",
+    hdrs = glob(
+        include = [
+            "include/**/*.h",
+            "include/**/*.hpp",
+        ],
+    ),
+    includes = ["include"],
+)
