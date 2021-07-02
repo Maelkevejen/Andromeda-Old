@@ -9,7 +9,7 @@
 # Flags                                                              [ Config ]
 
 build --cxxopt=-std=c++20
-build --repo_env=CC=clang++
+build --repo_env=CC=clang
 
 # Required Flags                                                   [ Required ]
 
@@ -25,6 +25,7 @@ build:release --config=warning:all
 
 # Optional Flags                                                   [ Optional ]
 
+build:sandbox:debug --sandbox_debug
 build:warning:all --cxxopt=-Wall
 build:warning:all --cxxopt=-Wextra
 build:warning:all --cxxopt=-Wpedantic

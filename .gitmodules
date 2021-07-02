@@ -4,3 +4,9 @@
 [submodule "includes/spdlog"]
 	path = includes/spdlog
 	url = git@github.com:gabime/spdlog.git
+[submodule "includes/glfw"]
+	path = includes/glfw
+	url = git@github.com:glfw/glfw.git
+[submodule "includes/vulkan/headers"]
+	path = includes/vulkan/headers
+	url = git@github.com:KhronosGroup/Vulkan-Headers.git

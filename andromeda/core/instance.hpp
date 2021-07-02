@@ -3,7 +3,7 @@
 #include <memory>
 #include <string>
 
-#include "andromeda/core/system/logging/log.hpp"
+#include "andromeda/core/system/log/log.hpp"
 
 namespace Andromeda {
     class Instance {
@@ -18,7 +18,7 @@ namespace Andromeda {
         };
         struct Configuration {
             Instance::Meta meta;
-            Logging::Log::Configuration log;
+            System::Log::Configuration log;
         };
       public:
         virtual ~Instance() = default;

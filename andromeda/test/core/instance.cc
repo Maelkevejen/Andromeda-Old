@@ -23,28 +23,29 @@ class Test : public Andromeda::Instance {
 };
 
 std::unique_ptr<Andromeda::Instance> Andromeda::instantiate() {
-    return std::make_unique<Test>(Andromeda::Instance::Configuration {
-        .meta = {
-            .name = "Test Instance",
-            .engine = Andromeda::Titles::engine,
-        },
-        .log = {
-            .name = "test",
-            .log_directory = "logging/test.log",
-            .max_log_files = 3,
-            .max_log_file_size = 5 * 1024 * 1024,
-            .threads = 8096,
-            .workers = 1,
-        }
+    return std::make_unique<Test>(
+        Andromeda::Instance::Configuration {
+            .meta = {
+                .name = "Test Instance",
+                .engine = Andromeda::Titles::engine,
+            },
+            .log = {
+                .name = "test",
+                .log_directory = "logging/test.log",
+                .max_log_files = 3,
+                .max_log_file_size = 5 * 1024 * 1024,
+                .threads = 8096,
+                .workers = 1,
+            },
     });
 }
 
 TEST(Instance, Create) {
     EXPECT_NO_THROW({
         auto instance = Andromeda::instantiate();
-        Andromeda::Logging::Log::initialize({instance->configuration().log});
+        Andromeda::System::Log::initialize({instance->configuration().log});
 
-        ANDROMEDA_CORE_TRACE("[ Initialized / Andromeda ]");
+        ANDROMEDA_CORE_TRACE("[ Initializing / Andromeda ]");
         ANDROMEDA_CORE_INFO("[ Instantiating / Andromeda / {0} ... ]", instance->configuration().meta.name);
 
         instance->initialize();
