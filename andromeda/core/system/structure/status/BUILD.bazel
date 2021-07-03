@@ -1,0 +1,12 @@
+# ::andromeda::core::system::structure
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "status",
+    hdrs = [
+        "status.hpp",
+    ],
+)
