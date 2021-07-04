@@ -15,6 +15,7 @@ namespace Andromeda {
         };
         struct State {
             System::Structure::Status::Runtime status;
+            System::Structure::Status::Error error;
         };
         struct Configuration {
             Instance::Meta meta;
@@ -30,6 +31,7 @@ namespace Andromeda {
 
         virtual const Instance::Configuration & configuration() const = 0;
         virtual const Instance::State & state() const = 0;
+        virtual int code() const = 0;
 
     };
     std::unique_ptr<Instance> instantiate();

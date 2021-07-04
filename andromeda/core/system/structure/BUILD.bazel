@@ -20,3 +20,10 @@ cc_library(
         "status.hpp",
     ],
 )
+
+cc_library(
+    name = "tuple",
+    hdrs = [
+        "tuple.hpp",
+    ],
+)

@@ -3,3 +3,15 @@
 package(
     default_visibility = ["//visibility:public"],
 )
+
+cc_library(
+    name = "event",
+    hdrs = [
+        "event.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core",
+        "@andromeda//andromeda/core/system/structure:bitmask",
+        "@andromeda//andromeda/core/system/structure:status",
+    ],
+)

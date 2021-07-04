@@ -2,18 +2,17 @@
 
 #include "andromeda/core/instance.hpp"
 
-class Test : public Andromeda::Instance {
+class Basic : public Andromeda::Instance {
   public:
-    Test(Andromeda::Instance::Configuration configuration) : 
-        m_Configuration(configuration), 
+    Basic(Andromeda::Instance::Configuration configuration) :
+        m_Configuration(configuration),
         m_State({
-            .status = Andromeda::System::Structure::Status::Runtime::Nullified
-        }) 
-        {
+        .status = Andromeda::System::Structure::Status::Runtime::Nullified
+    }) {
         m_State.status = Andromeda::System::Structure::Status::Runtime::Nullified;
     }
-    
-    ~Test() override {
+
+    ~Basic() override {
 
     }
 
@@ -39,26 +38,35 @@ class Test : public Andromeda::Instance {
     const Instance::State & state() const override {
         return m_State;
     }
+
+    int code() const override {
+        switch (m_State.error) {
+            case Andromeda::System::Structure::Status::Error::Undefined :
+                return 0;
+            default:
+                return 0;
+        }
+    }
   private:
     Andromeda::Instance::Configuration m_Configuration;
     Andromeda::Instance::State m_State;
 };
 
 std::unique_ptr<Andromeda::Instance> Andromeda::instantiate() {
-    return std::make_unique<Test>(
-        Andromeda::Instance::Configuration {
-            .meta = {
-                .name = "Test Instance",
-                .engine = Andromeda::Titles::engine,
-            },
-            .log = {
-                .name = "test",
-                .log_directory = "logging/test.log",
-                .max_log_files = 3,
-                .max_log_file_size = 5 * 1024 * 1024,
-                .threads = 8096,
-                .workers = 1,
-            },
+    return std::make_unique<Basic>(
+    Andromeda::Instance::Configuration {
+        .meta = {
+            .name = "Test Instance",
+            .engine = Andromeda::Titles::engine,
+        },
+        .log = {
+            .name = "test",
+            .log_directory = "logging/test.log",
+            .max_log_files = 3,
+            .max_log_file_size = 5 * 1024 * 1024,
+            .threads = 8096,
+            .workers = 1,
+        },
     });
 }
 

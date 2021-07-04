@@ -1,0 +1,30 @@
+# ::andromeda::test::core::system::event::type
+
+package(
+    default_visibility = ["//visibility:public"],
+    licenses = ["notice"],
+)
+
+cc_test(
+    name = "mouse",
+    srcs = [
+        "mouse.cc",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/event/type:mouse",
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "window",
+    srcs = [
+        "window.cc",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/event/type:window",
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+)

@@ -20,5 +20,5 @@ int main(int, const char *[]) {
     ANDROMEDA_CORE_INFO("[ Terminating / Andromeda / {0} ... ]", instance->configuration().meta.name);
     ANDROMEDA_CORE_TRACE("[ Status: {0} ]", instance->state().status);
 
-    return instance->state().status;
+    return instance->code();
 }

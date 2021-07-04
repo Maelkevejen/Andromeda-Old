@@ -1,4 +1,4 @@
-# ::andromeda::test::structure
+# ::andromeda::test::core::system::structure
 
 package(
     default_visibility = ["//visibility:public"],
@@ -24,6 +24,18 @@ cc_test(
     ],
     deps = [
         "@andromeda//andromeda/core/system/structure:status",
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "tuple",
+    srcs = [
+        "tuple.cc",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/structure:tuple",
         "@gtest",
         "@gtest//:gtest_main",
     ],

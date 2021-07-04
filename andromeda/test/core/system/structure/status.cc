@@ -9,14 +9,21 @@ TEST(Status, Runtime) {
         auto interrupted = Andromeda::System::Structure::Status::Runtime::Interrupted;
         auto nullified = Andromeda::System::Structure::Status::Runtime::Nullified;
         auto terminated = Andromeda::System::Structure::Status::Runtime::Terminated;
-        
+
         EXPECT_FALSE(activated == initialized || initialized == interrupted || interrupted == nullified || nullified == terminated);
+    });
+}
+
+TEST(Status, Event) {
+    EXPECT_NO_THROW({
+        auto unused = Andromeda::System::Structure::Status::Event::Unused;
+        EXPECT_TRUE(unused == unused);
     });
 }
 
 TEST(Status, Error) {
     EXPECT_NO_THROW({
         auto undefined = Andromeda::System::Structure::Status::Error::Undefined;
-        EXPECT_TRUE (undefined == undefined);
+        EXPECT_TRUE(undefined == undefined);
     });
 }
