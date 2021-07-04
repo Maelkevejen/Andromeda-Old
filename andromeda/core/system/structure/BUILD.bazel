@@ -1,0 +1,29 @@
+# ::andromeda::core::system::structure
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "bitmask",
+    hdrs = [
+        "bitmask.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core",
+    ],
+)
+
+cc_library(
+    name = "status",
+    hdrs = [
+        "status.hpp",
+    ],
+)
+
+cc_library(
+    name = "tuple",
+    hdrs = [
+        "tuple.hpp",
+    ],
+)

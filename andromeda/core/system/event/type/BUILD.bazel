@@ -1,0 +1,27 @@
+# ::andromeda::core::system::event::type
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "mouse",
+    hdrs = [
+        "mouse.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/event",
+        "@andromeda//andromeda/core/system/structure:tuple",
+    ],
+)
+
+cc_library(
+    name = "window",
+    hdrs = [
+        "window.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/event",
+        "@andromeda//andromeda/core/system/structure:tuple",
+    ],
+)

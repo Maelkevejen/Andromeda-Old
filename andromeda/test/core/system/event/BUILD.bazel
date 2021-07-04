@@ -1,0 +1,18 @@
+# ::andromeda::test::core::system::event
+
+package(
+    default_visibility = ["//visibility:public"],
+    licenses = ["notice"],
+)
+
+cc_test(
+    name = "event",
+    srcs = [
+        "event.cc",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/event",
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+)
