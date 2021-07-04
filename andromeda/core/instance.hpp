@@ -4,7 +4,7 @@
 #include <string>
 
 #include "andromeda/core/system/log/log.hpp"
-#include "andromeda/core/system/structure/status/status.hpp"
+#include "andromeda/core/system/structure/status.hpp"
 
 namespace Andromeda {
     class Instance {

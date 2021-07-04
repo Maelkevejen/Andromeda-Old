@@ -19,7 +19,7 @@ cc_library(
     deps = [
         "@andromeda//andromeda/core",
         "@andromeda//andromeda/core/system/log",
-        "@andromeda//andromeda/core/system/structure/status",
+        "@andromeda//andromeda/core/system/structure:status",
     ],
 )
 

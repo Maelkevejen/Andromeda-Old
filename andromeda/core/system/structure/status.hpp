@@ -8,4 +8,7 @@ namespace Andromeda::System::Structure::Status {
         Terminated,
         Nullified,
     };
+    enum class Error {
+        Undefined,
+    };
 } /* Andromeda::System::Structure::Status */

@@ -1,0 +1,30 @@
+# ::andromeda::test::structure
+
+package(
+    default_visibility = ["//visibility:public"],
+    licenses = ["notice"],
+)
+
+cc_test(
+    name = "bitmask",
+    srcs = [
+        "bitmask.cc",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/structure:bitmask",
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "status",
+    srcs = [
+        "status.cc",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/structure:status",
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+)
