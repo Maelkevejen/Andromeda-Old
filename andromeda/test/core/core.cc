@@ -1,6 +1,6 @@
-#include "gtest/gtest.h"
-
 #include "andromeda/core/core.hpp"
+
+#include "gtest/gtest.h"
 
 TEST(Core, Constants) {
     EXPECT_EQ(1, Andromeda::Numerics::Bit(0));

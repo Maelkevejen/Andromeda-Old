@@ -1,0 +1,18 @@
+# ::andromeda::core::system::platform::linux::graphics::display
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "window",
+    hdrs = [
+        "window.hpp",
+    ],
+    target_compatible_with = [
+        "@platforms//os:linux",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/graphics/display:window",
+    ],
+)

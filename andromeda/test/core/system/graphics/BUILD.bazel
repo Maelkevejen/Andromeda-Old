@@ -1,0 +1,5 @@
+# ::andromeda::test::core::system::graphics
+
+package(
+    default_visibility = ["//visibility:public"],
+)

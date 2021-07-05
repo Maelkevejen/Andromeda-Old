@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[About](#About)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Installation](#Installation-)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Features](#Features)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Wiki][wiki]&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Release][release]&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Contributing](CONTRIBUTING.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[License](LICENSE)
+[About](#About)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Installation](#Installation-)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Features](#Features)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Wiki][wiki]&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Release][release]&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Contributing](CONTRIBUTING.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Codeowners](CODEOWNERS)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Code of Conduct](CODE_OF_CONDUCT.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Security](SECURITY.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[License](LICENSE)
 
 </div>
  
@@ -20,7 +20,8 @@
 - [Installation <img src="https://img.shields.io/github/workflow/status/robbie-vanderzee/andromeda/Continuous%20Integration?style=for-the-badge" align="right" alt="Build status badge" />](#installation-)
     - [*Andromeda* **build** with Bazel](#andromeda-build-with-bazel)
     - [*Andromeda* **test** build with Bazel](#andromeda-test-build-with-bazel)
-  - [Archlinux](#archlinux)
+  - [Linux](#linux)
+    - [Archlinux](#archlinux)
 - [License <img src="https://img.shields.io/github/license/robbie-vanderzee/andromeda?color=blue&style=for-the-badge" align="right" alt="License badge"/>](#license-)
 
 # About
@@ -91,9 +92,10 @@ You may also test the current implementation for any configuration:
 
 The latest test evaluation on common configurations is continuously integrated, statically analyzed, and built on [Github][github] actions.
 
-<div align="center">Refer to the platform specific instructions if necessary.</div>
+<div align="center">Refer to the platform specific instructions if necessary. Additional information provided in the <a href="https://github.com/robbie-vanderzee/andromeda/wiki">Wiki</a>.</div>
 
-## Archlinux
+## Linux
+### Archlinux
 <img src="https://img.shields.io/badge/-Archlinux-blue?style=for-the-badge&logo=arch-linux&logoColor=white" align="right" alt="Archlinux badge" />
 
 *Andromeda* requires library linking with both the Window server library [GLFW][glfw] and a Graphics API ([Vulkan][vulkan]) as these are not built from source.
