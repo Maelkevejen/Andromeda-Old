@@ -13,4 +13,3 @@ I don't believe in such things, but I ask that you:
    * All rulings are subject to reversal at any time, for any reason, especially in light of a solid counter argument to the ruling
 
 Thanks.
-
