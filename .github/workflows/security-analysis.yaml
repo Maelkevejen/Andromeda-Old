@@ -25,14 +25,16 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        submodules: 'true'
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
         languages: ${{ matrix.language }}
 
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v1
+    - name: Build
+      run: bazel build --config=debug --show_progress_rate_limit=5 --curses=yes --color=yes --terminal_columns=143 --show_timestamps --verbose_failures --jobs=24 --announce_rc //...
       
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
