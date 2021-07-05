@@ -1,0 +1,5 @@
+# ::andromeda::core::system::platform::linux::graphics
+
+package(
+    default_visibility = ["//visibility:public"],
+)

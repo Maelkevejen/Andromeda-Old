@@ -1,0 +1,23 @@
+# ::andromeda::core::system::graphics::display
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "monitor",
+    hdrs = [
+        "monitor.hpp",
+    ],
+)
+
+cc_library(
+    name = "window",
+    hdrs = [
+        "window.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core",
+        "@andromeda//andromeda/core/system/event/type:window",
+    ],
+)

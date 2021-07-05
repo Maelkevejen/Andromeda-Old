@@ -1,6 +1,6 @@
-#include "gtest/gtest.h"
-
 #include "andromeda/core/instance.hpp"
+
+#include "gtest/gtest.h"
 
 class Basic : public Andromeda::Instance {
   public:
