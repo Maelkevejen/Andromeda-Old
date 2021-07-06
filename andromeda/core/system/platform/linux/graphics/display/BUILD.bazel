@@ -54,5 +54,6 @@ cc_library(
     ],
     deps = [
         "@andromeda//andromeda/core/system/graphics/display:window",
+        "@glfw",
     ],
 )
