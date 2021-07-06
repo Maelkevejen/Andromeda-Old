@@ -10,6 +10,10 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: 'true'
+
+    - name: Install Ubuntu dependencies
+      run: sudo apt-get install mesa-common-dev
+    
     - name: Cache bazel build results
       uses: actions/cache@v2.0.0
       env:

@@ -28,6 +28,9 @@ jobs:
       with:
         submodules: 'true'
 
+    - name: Install Ubuntu dependencies
+      run: sudo apt-get install mesa-common-dev
+    
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
