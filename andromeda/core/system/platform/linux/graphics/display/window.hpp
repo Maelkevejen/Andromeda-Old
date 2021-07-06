@@ -2,10 +2,17 @@
 
 #include "andromeda/core/system/graphics/display/window.hpp"
 
-namespace Andromeda::System::Linux::Graphics {
+#include <GLFW/glfw3.h>
+
+namespace Andromeda::System::Linux::Graphics::Display {
     class Window : Andromeda::System::Graphics::Display::Window {
       public:
-        void configure(Configuration configuration) override;
+        Window(Window::Configuration configuration);
+        ~Window() override;
+
         void update() override;
+      private:
+        Window::Configuration m_Configuration;
+        GLFWwindow * m_Native;
     };
 } /* Andromeda::System::Linux::Graphics::Display */

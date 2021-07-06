@@ -5,6 +5,17 @@ package(
 )
 
 cc_library(
+    name = "monitor",
+    hdrs = [
+        "monitor.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/event",
+        "@andromeda//andromeda/core/system/structure:tuple",
+    ],
+)
+
+cc_library(
     name = "mouse",
     hdrs = [
         "mouse.hpp",

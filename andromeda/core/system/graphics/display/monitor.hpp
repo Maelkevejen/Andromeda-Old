@@ -1,7 +1,6 @@
 #pragma once
 
 #include <string>
-#include <memory>
 
 namespace Andromeda::System::Graphics::Display {
     class Monitor {
@@ -27,9 +26,6 @@ namespace Andromeda::System::Graphics::Display {
       public:
         virtual ~Monitor() = default;
 
-        virtual void configure(Monitor::Configuration configuration) = 0;
         virtual void update() = 0;
-
-        static std::unique_ptr<Monitor> create(const Monitor::Configuration configuration);
     };
 } /* Andromeda::System::Graphics::Display */

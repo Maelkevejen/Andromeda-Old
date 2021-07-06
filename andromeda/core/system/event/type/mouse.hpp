@@ -5,10 +5,10 @@
 
 namespace Andromeda::System::Event {
     namespace Mouse {
-        struct Move : public Event < Type::Move, Group::Input + Group::Mouse > {
+        struct Move : Event < Type::Move, Group::Input + Group::Mouse > {
             System::Structure::Duo<int> position;
         };
-        struct Scroll : public Event < Type::Scroll, Group::Input + Group::Mouse > {
+        struct Scroll : Event < Type::Scroll, Group::Input + Group::Mouse > {
             System::Structure::Duo<float> offset;
         };
     } /* Mouse */

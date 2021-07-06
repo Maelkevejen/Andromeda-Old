@@ -1,6 +1,6 @@
 # Contributing
 
-Let's stay organized. Please open a discussion with your proposal or criticism through the 'discussions' tab. Upon approval, a coordinator (probably @robbie-vanderzee) will create an issue and can make a pull request tagging that issue. Follow the commit size and message standards set by previous commits:
+Let's stay organized. Please open a discussion with your proposal or criticism through the 'discussions' tab. Upon approval, a coordinator (probably @robbie-vanderzee) will create an issue and you can make a pull request tagging that issue. Follow the commit size and message standards set by previous commits:
 
  * General idea (#Issue number):
       - Item Alpha
