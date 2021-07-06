@@ -5,7 +5,47 @@ package(
 )
 
 cc_library(
+    name = "manager",
+    srcs = [
+        "manager.cpp",
+    ],
+    hdrs = [
+        "manager.hpp",
+    ],
+    target_compatible_with = [
+        "@platforms//os:linux",
+    ],
+    deps = [
+        ":monitor",
+        ":window",
+        "@andromeda//andromeda/core/system/graphics/display:manager",
+        "@glfw",
+    ],
+)
+
+cc_library(
+    name = "monitor",
+    srcs = [
+        "monitor.cpp",
+    ],
+    hdrs = [
+        "monitor.hpp",
+    ],
+    target_compatible_with = [
+        "@platforms//os:linux",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/event/type:monitor",
+        "@andromeda//andromeda/core/system/graphics/display:monitor",
+        "@glfw",
+    ],
+)
+
+cc_library(
     name = "window",
+    srcs = [
+        "window.cpp",
+    ],
     hdrs = [
         "window.hpp",
     ],
@@ -14,5 +54,6 @@ cc_library(
     ],
     deps = [
         "@andromeda//andromeda/core/system/graphics/display:window",
+        "@glfw",
     ],
 )

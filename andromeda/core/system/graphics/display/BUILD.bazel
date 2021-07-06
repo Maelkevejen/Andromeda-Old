@@ -5,6 +5,17 @@ package(
 )
 
 cc_library(
+    name = "manager",
+    hdrs = [
+        "manager.hpp",
+    ],
+    deps = [
+        ":monitor",
+        ":window",
+    ],
+)
+
+cc_library(
     name = "monitor",
     hdrs = [
         "monitor.hpp",

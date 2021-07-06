@@ -3,8 +3,6 @@
 #include "andromeda/core/core.hpp"
 #include "andromeda/core/system/event/type/window.hpp"
 
-#include <memory>
-
 namespace Andromeda::System::Graphics::Display {
     class Window {
       public:
@@ -32,9 +30,6 @@ namespace Andromeda::System::Graphics::Display {
       public:
         virtual ~Window() = default;
 
-        virtual void configure(Window::Configuration configuration) = 0;
         virtual void update() = 0;
-
-        static std::unique_ptr<Window> create(const Window::Configuration configuration);
     };
 } /* Andromeda::System::Graphics::Display::Window */

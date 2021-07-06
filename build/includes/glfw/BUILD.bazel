@@ -6,7 +6,7 @@ package(
 )
 
 cc_library(
-    name = "glfw_hdrs",
+    name = "glfw",
     hdrs = glob(
         include = [
             "include/**/*.h",

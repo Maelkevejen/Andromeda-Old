@@ -1,11 +1,11 @@
 #pragma once
 
-#include <filesystem>
+#include "andromeda/core/core.hpp"
 
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
 
-#include "andromeda/core/core.hpp"
+#include <filesystem>
 
 namespace Andromeda::System {
     class Log {
