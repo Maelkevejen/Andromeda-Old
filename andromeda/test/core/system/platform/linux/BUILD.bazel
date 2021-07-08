@@ -1,0 +1,6 @@
+# ::andromeda::test::core::system::platform::linux
+
+package(
+    default_visibility = ["//visibility:public"],
+    licenses = ["notice"],
+)

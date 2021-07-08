@@ -4,8 +4,6 @@
 #include "andromeda/core/system/structure/bitmask.hpp"
 #include "andromeda/core/system/structure/status.hpp"
 
-#include <concepts>
-
 namespace Andromeda::System::Event {
     enum class Type {
         Group = 0,
@@ -29,7 +27,7 @@ namespace Andromeda::System::Event {
     };
     Andromeda::Structure::Concept::Tag bitmask(Andromeda::System::Event::Group);
 
-    template<Type t, Group g>
+    template<Type T, Group G>
     struct Event {
         Andromeda::System::Structure::Status::Event status;
     };

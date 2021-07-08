@@ -8,6 +8,8 @@ namespace Andromeda::System::Graphics::Display {
       public:
         virtual ~Manager() = default;
 
-        virtual void initialize();
+        virtual void initialize() = 0;
+
+        virtual void create(Window::Configuration configuration) = 0;
     };
 } /* Andromeda::System::Graphics::Display */

@@ -1,0 +1,21 @@
+# ::andromeda::test::core::system::platform::linux::graphics::display
+
+package(
+    default_visibility = ["//visibility:public"],
+    licenses = ["notice"],
+)
+
+cc_test(
+    name = "manager",
+    srcs = [
+        "manager.cc",
+    ],
+    target_compatible_with = [
+        "@platforms//os:linux",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/platform/linux/graphics/display:manager",
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+)

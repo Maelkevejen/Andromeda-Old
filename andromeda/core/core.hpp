@@ -15,7 +15,7 @@ namespace Andromeda {
     }  /* Numerics */
     namespace Structure {
         namespace Concept {
-            using Tag = void;
+            struct Tag {};
             template <class E>
             concept Enumeration = requires(E e) {
                 std::is_enum_v<E>;
