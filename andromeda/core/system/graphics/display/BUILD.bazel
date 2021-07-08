@@ -30,5 +30,6 @@ cc_library(
     deps = [
         "@andromeda//andromeda/core",
         "@andromeda//andromeda/core/system/event/type:window",
+        "@andromeda//andromeda/core/system/structure:bitmask",
     ],
 )

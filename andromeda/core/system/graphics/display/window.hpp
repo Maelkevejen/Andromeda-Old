@@ -1,6 +1,7 @@
 #pragma once
 
 #include "andromeda/core/core.hpp"
+#include "andromeda/core/system/structure/bitmask.hpp"
 #include "andromeda/core/system/event/type/window.hpp"
 
 namespace Andromeda::System::Graphics::Display {
@@ -18,9 +19,9 @@ namespace Andromeda::System::Graphics::Display {
             Resizable  = Andromeda::Numerics::Bit(1),
             Visible    = Andromeda::Numerics::Bit(2),
             Floating   = Andromeda::Numerics::Bit(3),
-            Fullscreen = Andromeda::Numerics::Bit(4),
+            Subscreen  = Andromeda::Numerics::Bit(4),
+            Fullscreen = Andromeda::Numerics::Bit(5),
         };
-        Andromeda::Structure::Concept::Tag bitmask(Andromeda::System::Graphics::Display::Window::Options);
         struct Configuration {
             std::string title;
             Position position;
@@ -32,4 +33,5 @@ namespace Andromeda::System::Graphics::Display {
 
         virtual void update() = 0;
     };
+    Andromeda::Structure::Concept::Tag bitmask(Andromeda::System::Graphics::Display::Window::Options);
 } /* Andromeda::System::Graphics::Display::Window */

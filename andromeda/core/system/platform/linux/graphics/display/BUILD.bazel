@@ -19,6 +19,7 @@ cc_library(
         ":monitor",
         ":window",
         "@andromeda//andromeda/core/system/graphics/display:manager",
+        "@andromeda//andromeda/core/system/log",
         "@glfw",
     ],
 )
@@ -54,6 +55,7 @@ cc_library(
     ],
     deps = [
         "@andromeda//andromeda/core/system/graphics/display:window",
+        "@andromeda//andromeda/core/system/log",
         "@glfw",
     ],
 )

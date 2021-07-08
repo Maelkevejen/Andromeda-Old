@@ -8,7 +8,10 @@ namespace Andromeda::Structure::Concept {
     template <class T>
     concept Bitmask = requires(T t) {
         Enumeration<T>;
-        bitmask(t);
+        {
+            bitmask(t)
+        }
+        -> std::same_as<Andromeda::Structure::Concept::Tag>;
     };
 } /* Andromeda::Structure::Concept */
 
