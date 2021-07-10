@@ -7,16 +7,18 @@
 
 #include <memory>
 namespace Andromeda::System::Linux::Graphics::Display {
-    class Manager : Andromeda::System::Graphics::Display::Manager {
+    class Manager : public Andromeda::System::Graphics::Display::Manager {
       public:
         Manager();
         ~Manager() override;
 
         void initialize() override;
+        void update() override;
 
         void create(Andromeda::System::Graphics::Display::Window::Configuration configuration) override;
+
       private:
-        std::vector<Andromeda::System::Linux::Graphics::Display::Monitor> m_Monitors;
-        std::vector<Andromeda::System::Linux::Graphics::Display::Window> m_Windows;
+        std::vector<std::unique_ptr<Andromeda::System::Graphics::Display::Monitor>> m_Monitors;
+        std::vector<std::unique_ptr<Andromeda::System::Graphics::Display::Window>> m_Windows;
     };
 } /* Andromeda::System::Graphics::Display */

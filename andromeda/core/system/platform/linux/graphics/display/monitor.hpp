@@ -5,10 +5,9 @@
 #include <GLFW/glfw3.h>
 
 namespace Andromeda::System::Linux::Graphics::Display {
-    class Monitor : Andromeda::System::Graphics::Display::Monitor {
+    class Monitor : public Andromeda::System::Graphics::Display::Monitor {
       public:
         Monitor(GLFWmonitor * monitor);
-        ~Monitor() override;
 
         void update() override;
       private:

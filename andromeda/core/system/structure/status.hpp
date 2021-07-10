@@ -17,5 +17,6 @@ namespace Andromeda::System::Structure::Status {
     };
     enum class Error {
         Undefined = 0,
+        None,
     };
 } /* Andromeda::System::Structure::Status */
