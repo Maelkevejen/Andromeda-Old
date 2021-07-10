@@ -13,6 +13,7 @@ cc_library(
             "include/**/*.hpp",
         ],
     ),
+    copts = ["-DGLFW_INCLUDE_NONE"],
     includes = ["include"],
     linkopts = ["-lglfw"],
 )
