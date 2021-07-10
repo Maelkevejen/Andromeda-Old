@@ -4,13 +4,18 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
       with:
         submodules: 'true'
-        
+
+    - name: Install Ubuntu dependencies
+      run: |
+        sudo apt-get upgrade
+        sudo apt-get install mesa-common-dev clang libglfw3 libglfw3-dev
+    
     - name: Cache bazel build results
       uses: actions/cache@v2.0.0
       env:
