@@ -7,7 +7,8 @@ class Basic : public Andromeda::Instance {
     Basic(Andromeda::Instance::Configuration configuration) :
         m_Configuration(configuration),
         m_State({
-        .status = Andromeda::System::Structure::Status::Runtime::Nullified
+        .status = Andromeda::System::Structure::Status::Runtime::Nullified,
+        .error = Andromeda::System::Structure::Status::Error::None,
     }) {
         m_State.status = Andromeda::System::Structure::Status::Runtime::Nullified;
     }
@@ -41,7 +42,7 @@ class Basic : public Andromeda::Instance {
 
     int code() const override {
         switch (m_State.error) {
-            case Andromeda::System::Structure::Status::Error::Undefined :
+            case Andromeda::System::Structure::Status::Error::Undefined:
                 return 0;
             default:
                 return 0;

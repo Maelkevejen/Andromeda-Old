@@ -5,10 +5,6 @@ namespace Andromeda::System::Linux::Graphics::Display {
         glfwSetMonitorUserPointer(m_Native, & m_Configuration);
         update();
     }
-    Monitor::~Monitor() {
-
-    }
-
     void Monitor::update() {
         m_Configuration.title = std::string(glfwGetMonitorName(m_Native));
         glfwGetMonitorPos(m_Native, & m_Configuration.position.x, & m_Configuration.position.y);

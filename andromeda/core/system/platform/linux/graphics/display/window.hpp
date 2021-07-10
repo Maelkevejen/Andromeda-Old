@@ -7,7 +7,7 @@
 #include <memory>
 
 namespace Andromeda::System::Linux::Graphics::Display {
-    class Window : Andromeda::System::Graphics::Display::Window {
+    class Window : public Andromeda::System::Graphics::Display::Window {
       public:
         Window(Window::Configuration configuration);
         ~Window() override;

@@ -4,9 +4,7 @@
 
 TEST(Event, Move) {
     EXPECT_NO_THROW({
-        auto move = Andromeda::System::Event::Window::Move({
-            .position = {3, 2},
-        });
+        auto move = Andromeda::System::Event::Window::Move({3, 2});
         EXPECT_EQ(move.status, Andromeda::System::Structure::Status::Event::Unused);
         move.status = Andromeda::System::Structure::Status::Event::Used;
     });
@@ -14,10 +12,7 @@ TEST(Event, Move) {
 
 TEST(Event, Resize) {
     EXPECT_NO_THROW({
-        auto resize = Andromeda::System::Event::Window::Resize({
-            {},
-            {3, 2},
-        });
+        auto resize = Andromeda::System::Event::Window::Resize({3, 2});
         EXPECT_EQ(resize.status, Andromeda::System::Structure::Status::Event::Unused);
         resize.status = Andromeda::System::Structure::Status::Event::Used;
     });
