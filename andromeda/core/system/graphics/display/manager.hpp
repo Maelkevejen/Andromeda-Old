@@ -14,5 +14,7 @@ namespace Andromeda::System::Graphics::Display {
         virtual void update() = 0;
 
         virtual void create(Window::Configuration configuration) = 0;
+
+        static std::unique_ptr<Manager> instantiate();
     };
 } /* Andromeda::System::Graphics::Display */
