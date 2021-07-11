@@ -5,11 +5,11 @@
 
 namespace Andromeda::System::Event {
     namespace Monitor {
-        struct Connect : Event < Type::Connect, Group::Instance + Group::Monitor > {
+        struct Connect : public Event < Type::Connect, Group::Instance + Group::Monitor > {
             Connect() : Event({Andromeda::System::Structure::Status::Event::Unused}) {}
             Connect(Andromeda::System::Structure::Status::Event status) : Event({status}) {}
         };
-        struct Disconnect : Event < Type::Scroll, Group::Instance + Group::Monitor > {
+        struct Disconnect : public Event < Type::Scroll, Group::Instance + Group::Monitor > {
             Disconnect() : Event({Andromeda::System::Structure::Status::Event::Unused}) {}
             Disconnect(Andromeda::System::Structure::Status::Event status) : Event({status}) {}
         };

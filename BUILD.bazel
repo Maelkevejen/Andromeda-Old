@@ -4,4 +4,21 @@ package(
     licenses = ["notice"],
 )
 
+licenses(["notice"])
+
 exports_files(["LICENSE"])
+
+cc_library(
+    name = "andromeda",
+    includes = [
+        "andromeda",
+        "andromeda/andromeda",
+    ],
+    linkopts = [
+        "-lpthread",
+    ],
+    deps = [
+        "@andromeda//andromeda",
+        "@andromeda//andromeda/core:link",
+    ],
+)
