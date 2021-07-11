@@ -13,7 +13,7 @@ namespace Andromeda::System {
         auto color_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
         color_sink->set_pattern("%^[%T] %n [%l]: %v%$");
 
-        auto file_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt> (configuration.log_directory, configuration.max_log_file_size, configuration.max_log_files);
+        auto file_sink = std::make_shared<spdlog::sinks::rotating_file_sink_mt> (configuration.log_directory, configuration.max_log_file_size, configuration.max_log_files, true);
         file_sink->set_pattern("[%T] [%l] %n: %v");
 
         std::vector<spdlog::sink_ptr> sinks = { color_sink, file_sink };

@@ -26,4 +26,4 @@ bazel_skylib_workspace()
 
 load("@andromeda//build/bazel:includes.bzl", "configure_submodule_dependencies")
 
-configure_submodule_dependencies()
+configure_submodule_dependencies("@andromeda", "./")
