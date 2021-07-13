@@ -14,9 +14,10 @@ cc_library(
         "andromeda",
         "andromeda/andromeda",
     ],
-    linkopts = [
-        "-lpthread",
-    ],
+    linkopts = select({
+        "@platforms//os:linux": ["-lpthread"],
+        "@//conditions:default": [],
+    }),
     deps = [
         "@andromeda//andromeda",
         "@andromeda//andromeda/core:link",

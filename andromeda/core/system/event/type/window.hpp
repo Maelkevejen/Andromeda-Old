@@ -15,7 +15,9 @@ namespace Andromeda::System::Event {
             Resize(System::Structure::Duo<int> resize, Andromeda::System::Structure::Status::Event status) : Event({status}), resize({resize}) {}
             System::Structure::Duo<int> resize;
         };
-        struct Close : public Event < Type::Close, Group::Instance + Group::Window > {};
+        struct Close : public Event < Type::Close, Group::Instance + Group::Window > {
+            Close() : Event({Andromeda::System::Structure::Status::Event::Unused}) {}
+        };
         struct Refresh : public Event < Type::Refresh, Group::Instance + Group::Window > {};
         struct Focus : public Event < Type::Focus, Group::Instance + Group::Window > {};
         struct Defocus : public Event < Type::Defocus, Group::Instance + Group::Window > {};

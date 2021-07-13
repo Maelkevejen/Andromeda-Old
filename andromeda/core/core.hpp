@@ -23,5 +23,7 @@ namespace Andromeda {
                 std::integral<std::underlying_type<E>>;
             };
         }
+        template<class Parameter>
+        using Callback = std::function<void (Parameter &)>;
     }
 }  /* Andromeda */
