@@ -6,6 +6,16 @@ package(
 )
 
 cc_test(
+    name = "manager",
+    srcs = ["manager.cc"],
+    deps = [
+        "@andromeda//andromeda/core/system/event:manager",
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+)
+
+cc_test(
     name = "event",
     srcs = [
         "event.cc",

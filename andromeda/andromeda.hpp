@@ -15,7 +15,5 @@
 #include "andromeda/core/system/structure/status.hpp"
 #include "andromeda/core/system/structure/tuple.hpp"
 
-#include "andromeda/core/system/platform/linux.hpp"
-
 #include "andromeda/core/core.hpp"
 #include "andromeda/core/instance.hpp"
