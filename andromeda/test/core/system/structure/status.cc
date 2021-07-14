@@ -17,13 +17,20 @@ TEST(Status, Runtime) {
 TEST(Status, Event) {
     EXPECT_NO_THROW({
         auto unused = Andromeda::System::Structure::Status::Event::Unused;
-        EXPECT_TRUE(unused == unused);
+        auto used = Andromeda::System::Structure::Status::Event::Used;
+        auto removed = Andromeda::System::Structure::Status::Event::Removed;
+        auto misplaced = Andromeda::System::Structure::Status::Event::Misplaced;
+        auto errored = Andromeda::System::Structure::Status::Event::Errored;
+
+        EXPECT_FALSE(unused == used || used == removed || removed == misplaced || misplaced == errored);
     });
 }
 
 TEST(Status, Error) {
     EXPECT_NO_THROW({
         auto undefined = Andromeda::System::Structure::Status::Error::Undefined;
-        EXPECT_TRUE(undefined == undefined);
+        auto none = Andromeda::System::Structure::Status::Error::None;
+
+        EXPECT_FALSE(undefined == none);
     });
 }

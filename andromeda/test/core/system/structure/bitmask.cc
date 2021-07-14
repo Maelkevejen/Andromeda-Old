@@ -23,6 +23,7 @@ TEST(Bitmask, Add) {
     auto test = Test_Enum::Test2 + Test_Enum::Test4;
     EXPECT_TRUE(test > Test_Enum::Test2);
     EXPECT_TRUE(test > Test_Enum::Test4);
+    EXPECT_TRUE(test == Test_Enum::Test2 + Test_Enum::Test4);
 }
 
 TEST(Bitmask, Remove) {

@@ -12,7 +12,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
         Manager();
         ~Manager() override;
 
-        void initialize() override;
+        void initialize();
         void update() override;
 
         void create(Andromeda::System::Graphics::Display::Window::Configuration configuration) override;

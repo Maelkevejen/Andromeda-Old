@@ -12,4 +12,14 @@ namespace Andromeda::System::Structure {
         Element α, β, γ;
     };
 
+    template<typename Element>
+    struct Quartet {
+        Element α, β, γ, δ;
+    };
+
+    template<typename Element>
+    struct Quintet {
+        Element α, β, γ, δ, ε;
+    };
+
 } /* Andromeda::System::Structure */
