@@ -5,19 +5,6 @@ package(
 )
 
 cc_library(
-    name = "manager",
-    hdrs = [
-        "manager.hpp",
-    ],
-    deps = [
-        ":event",
-        "@andromeda//andromeda/core/system/event/type:monitor",
-        "@andromeda//andromeda/core/system/event/type:mouse",
-        "@andromeda//andromeda/core/system/event/type:window",
-    ],
-)
-
-cc_library(
     name = "event",
     hdrs = [
         "event.hpp",
