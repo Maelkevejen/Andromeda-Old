@@ -14,7 +14,8 @@ cc_test(
         "@platforms//os:linux",
     ],
     deps = [
-        "@andromeda//andromeda/core/system/platform/linux/graphics/display:manager",
+        "@andromeda//andromeda/core/system/graphics/display:manager",
+        "@andromeda//andromeda/core/system/platform:linux",
         "@gtest",
         "@gtest//:gtest_main",
     ],

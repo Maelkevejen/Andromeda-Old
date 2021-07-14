@@ -2,7 +2,7 @@
 
 #include "gtest/gtest.h"
 
-TEST(Manager, Create) {
+TEST(Manager, Dispatch) {
     auto callback = [](Andromeda::System::Event::Window::Close & event) {
         EXPECT_TRUE(event.status == Andromeda::System::Structure::Status::Event::Unused);
     };

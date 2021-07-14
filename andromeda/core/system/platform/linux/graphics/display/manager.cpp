@@ -6,22 +6,26 @@
 
 namespace Andromeda::System::Linux::Graphics::Display {
     Manager::Manager() {
+        ANDROMEDA_CORE_TRACE("Linux Display Manager.");
         initialize();
     }
     Manager::~Manager() {
         glfwTerminate();
     }
     void Manager::initialize() {
-        ANDROMEDA_CORE_ASSERT(glfwInit() == GLFW_TRUE, "Failed to initialize GLFW");
+        auto glfw = glfwInit();
+        ANDROMEDA_CORE_ASSERT_MESSAGE(glfw == GLFW_TRUE, "Failed to initialize GLFW, code: {0}.", glfw);
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
         int count = 0;
         auto monitors = glfwGetMonitors(&count);
         for (int monitor = 0; monitor < count; monitor++) m_Monitors.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Monitor>(monitors[monitor]));
+        ANDROMEDA_CORE_INFO("Initialzed {0} monitors.", m_Monitors.size());
     }
     void Manager::update() {
-
+        ANDROMEDA_CORE_TRACE("Updating Linux Display Manager.");
     }
     void Manager::create(Andromeda::System::Graphics::Display::Window::Configuration configuration) {
+        ANDROMEDA_CORE_TRACE("Creating a Linux Display Manager.");
         m_Windows.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Window>(configuration));
     }
 } /* Andromeda::System::Graphics::Display */
