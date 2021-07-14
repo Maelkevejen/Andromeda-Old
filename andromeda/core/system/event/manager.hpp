@@ -7,7 +7,6 @@
 
 #include <algorithm>
 #include <execution>
-#include <ranges>
 
 namespace Andromeda::System::Event {
     template <class Event>
@@ -17,13 +16,13 @@ namespace Andromeda::System::Event {
             m_Callbacks.push_back(callback);
         }
         void unsubscribe(Andromeda::Structure::Callback<Event &> callback) {
-            m_Callbacks.erase(std::ranges::remove(std::execution::par_unseq, m_Callbacks, callback));
+            m_Callbacks.erase(std::remove(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), callback));
         }
         void update(Event & event) {
             m_Event = event;
         }
         void series() {
-            std::ranges::for_each(m_Callbacks, [&](const auto callback) {
+            std::for_each(std::begin(m_Callbacks), std::end(m_Callbacks), [&](const auto callback) {
                 callback(m_Event);
             });
         }
