@@ -1,5 +1,7 @@
 #include "andromeda/core/system/event/type/window.hpp"
 
+#include "andromeda/core/system/event/manager.hpp"
+
 #include "gtest/gtest.h"
 
 TEST(Event, Move) {
@@ -75,18 +77,36 @@ TEST(Event, Restore) {
 }
 
 
-TEST(Event, Callback) {
+TEST(Event, Serial_Callback) {
     auto callback = [](Andromeda::System::Event::Window::Close & event) {
         EXPECT_TRUE(event.status == Andromeda::System::Structure::Status::Event::Unused);
         event.status = Andromeda::System::Structure::Status::Event::Used;
     };
-    Andromeda::System::Event::Window::Close::Manager manager;
+    Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Close> manager;
     manager.listen(callback);
-    manager.latest();
-    Andromeda::System::Event::Window::Close event;
-    manager.queue(event);
+    Andromeda::System::Event::Window::Close event1;
+    manager.callback(event1);
+    Andromeda::System::Event::Window::Close event2;
     manager.deafen(callback);
-    manager.latest();
+    manager.callback(event1);
     manager.listen(callback);
-    manager.latest();
+    manager.callback(event2);
+}
+
+TEST(Event, Parallel_Callback) {
+    auto callback = [](Andromeda::System::Event::Window::Close & event) {
+        EXPECT_TRUE(event.status == Andromeda::System::Structure::Status::Event::Unused);
+        event.status = Andromeda::System::Structure::Status::Event::Used;
+    };
+    auto callback2 = [](Andromeda::System::Event::Window::Close & event) {
+        EXPECT_TRUE(event.status == Andromeda::System::Structure::Status::Event::Used);
+    };
+    Andromeda::System::Event::Manager::Parallel<Andromeda::System::Event::Window::Close> manager;
+    manager.listen(callback);
+    manager.listen(callback2);
+    Andromeda::System::Event::Window::Close event1;
+    Andromeda::System::Event::Window::Close event2;
+    manager.queue(event1);
+    manager.queue(event2);
+    manager.series();
 }

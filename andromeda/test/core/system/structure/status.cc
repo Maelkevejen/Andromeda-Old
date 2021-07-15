@@ -3,34 +3,23 @@
 #include "gtest/gtest.h"
 
 TEST(Status, Runtime) {
+    using namespace Andromeda::System::Structure::Status;
     EXPECT_NO_THROW({
-        auto activated = Andromeda::System::Structure::Status::Runtime::Activated;
-        auto initialized = Andromeda::System::Structure::Status::Runtime::Initialized;
-        auto interrupted = Andromeda::System::Structure::Status::Runtime::Interrupted;
-        auto nullified = Andromeda::System::Structure::Status::Runtime::Nullified;
-        auto terminated = Andromeda::System::Structure::Status::Runtime::Terminated;
 
-        EXPECT_FALSE(activated == initialized || initialized == interrupted || interrupted == nullified || nullified == terminated);
+        EXPECT_FALSE(Runtime::Activated == Runtime::Initialized || Runtime::Initialized == Runtime::Interrupted || Runtime::Interrupted == Runtime::Nullified || Runtime::Nullified == Runtime::Terminated);
     });
 }
 
 TEST(Status, Event) {
+    using namespace Andromeda::System::Structure::Status;
     EXPECT_NO_THROW({
-        auto unused = Andromeda::System::Structure::Status::Event::Unused;
-        auto used = Andromeda::System::Structure::Status::Event::Used;
-        auto removed = Andromeda::System::Structure::Status::Event::Removed;
-        auto misplaced = Andromeda::System::Structure::Status::Event::Misplaced;
-        auto errored = Andromeda::System::Structure::Status::Event::Errored;
-
-        EXPECT_FALSE(unused == used || used == removed || removed == misplaced || misplaced == errored);
+        EXPECT_FALSE(Event::Unused == Event::Used || Event::Used == Event::Removed || Event::Removed == Event::Misplaced || Event::Misplaced == Event::Errored);
     });
 }
 
 TEST(Status, Error) {
+    using namespace Andromeda::System::Structure::Status;
     EXPECT_NO_THROW({
-        auto undefined = Andromeda::System::Structure::Status::Error::Undefined;
-        auto none = Andromeda::System::Structure::Status::Error::None;
-
-        EXPECT_FALSE(undefined == none);
+        EXPECT_FALSE(Error::Undefined == Error::None);
     });
 }

@@ -25,6 +25,6 @@ namespace Andromeda {
             };
         }
         template<class Parameter>
-        using Callback = std::function<void (Parameter &)>;
+        using Callback = std::function<void (Parameter)>;
     }
 }  /* Andromeda */

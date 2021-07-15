@@ -5,6 +5,17 @@ package(
 )
 
 cc_library(
+    name = "manager",
+    hdrs = [
+        "manager.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core",
+        "@andromeda//andromeda/core/system/structure:status",
+    ],
+)
+
+cc_library(
     name = "event",
     hdrs = [
         "event.hpp",

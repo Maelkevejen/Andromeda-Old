@@ -58,7 +58,7 @@ std::unique_ptr<Andromeda::Instance> Andromeda::instantiate() {
     Andromeda::Instance::Configuration {
         .meta = {
             .name = "Test Instance",
-            .engine = Andromeda::Titles::engine,
+            .engine = ::Andromeda::Titles::engine,
         },
         .log = {
             .name = "test",
@@ -73,7 +73,7 @@ std::unique_ptr<Andromeda::Instance> Andromeda::instantiate() {
 
 TEST(Instance, Execute) {
     EXPECT_NO_THROW({
-        auto instance = Andromeda::instantiate();
+        auto instance = ::Andromeda::instantiate();
         Andromeda::System::Log::initialize({instance->configuration().log});
 
         ANDROMEDA_CORE_TRACE("[ Initializing / Andromeda ]");
