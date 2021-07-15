@@ -53,7 +53,7 @@ class Basic : public Andromeda::Instance {
     Andromeda::Instance::State m_State;
 };
 
-std::unique_ptr<Andromeda::Instance> Andromeda::instantiate() {
+std::unique_ptr<Andromeda::Instance> Andromeda::Instance::instantiate() {
     return std::make_unique<Basic>(
     Andromeda::Instance::Configuration {
         .meta = {
@@ -73,7 +73,7 @@ std::unique_ptr<Andromeda::Instance> Andromeda::instantiate() {
 
 TEST(Instance, Execute) {
     EXPECT_NO_THROW({
-        auto instance = ::Andromeda::instantiate();
+        auto instance = Andromeda::Instance::instantiate();
         Andromeda::System::Log::initialize({instance->configuration().log});
 
         ANDROMEDA_CORE_TRACE("[ Initializing / Andromeda ]");
@@ -101,7 +101,7 @@ TEST(Instance, Execute) {
 
 TEST(Instance, Interrupt) {
     EXPECT_NO_THROW({
-        auto instance = Andromeda::instantiate();
+        auto instance = Andromeda::Instance::instantiate();
         Andromeda::System::Log::initialize({instance->configuration().log});
 
         ANDROMEDA_CORE_TRACE("[ Initializing / Andromeda ]");
@@ -133,7 +133,7 @@ TEST(Instance, Interrupt) {
 
 TEST(Instance, Choppy) {
     EXPECT_NO_THROW({
-        auto instance = Andromeda::instantiate();
+        auto instance = Andromeda::Instance::instantiate();
         Andromeda::System::Log::initialize({instance->configuration().log});
 
         ANDROMEDA_CORE_TRACE("[ Initializing / Andromeda ]");

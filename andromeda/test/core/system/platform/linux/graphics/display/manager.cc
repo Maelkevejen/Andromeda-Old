@@ -1,5 +1,4 @@
-#include "andromeda/core/system/platform/linux.hpp"
-#include "andromeda/core/system/graphics/display/manager.hpp"
+#include "andromeda/core/system/platform/linux/graphics/display/manager.hpp"
 
 #include "gtest/gtest.h"
 
