@@ -14,6 +14,7 @@ cc_library(
         "@andromeda//andromeda/core",
         "@andromeda//andromeda/core:instance",
         "@andromeda//andromeda/core/system/event",
+        "@andromeda//andromeda/core/system/event:manager",
         "@andromeda//andromeda/core/system/event/type:monitor",
         "@andromeda//andromeda/core/system/event/type:mouse",
         "@andromeda//andromeda/core/system/event/type:window",
