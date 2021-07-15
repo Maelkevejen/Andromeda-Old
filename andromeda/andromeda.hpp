@@ -4,6 +4,7 @@
 #include "andromeda/core/system/event/type/mouse.hpp"
 #include "andromeda/core/system/event/type/window.hpp"
 #include "andromeda/core/system/event/event.hpp"
+#include "andromeda/core/system/event/manager.hpp"
 
 #include "andromeda/core/system/graphics/display/manager.hpp"
 #include "andromeda/core/system/graphics/display/monitor.hpp"
