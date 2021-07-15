@@ -85,12 +85,12 @@ TEST(Event, Serial_Callback) {
     Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Close> manager;
     manager.listen(callback);
     Andromeda::System::Event::Window::Close event1;
-    manager.callback(event1);
+    manager.transmit(event1);
     Andromeda::System::Event::Window::Close event2;
     manager.deafen(callback);
-    manager.callback(event1);
+    manager.transmit(event1);
     manager.listen(callback);
-    manager.callback(event2);
+    manager.transmit(event2);
 }
 
 TEST(Event, Parallel_Callback) {
@@ -101,6 +101,9 @@ TEST(Event, Parallel_Callback) {
     auto callback2 = [](Andromeda::System::Event::Window::Close & event) {
         EXPECT_TRUE(event.status == Andromeda::System::Structure::Status::Event::Used);
     };
+    auto callback3 = [](Andromeda::System::Event::Window::Close & event) {
+        EXPECT_TRUE(event.status == Andromeda::System::Structure::Status::Event::Unused);
+    };
     Andromeda::System::Event::Manager::Parallel<Andromeda::System::Event::Window::Close> manager;
     manager.listen(callback);
     manager.listen(callback2);
@@ -108,5 +111,16 @@ TEST(Event, Parallel_Callback) {
     Andromeda::System::Event::Window::Close event2;
     manager.queue(event1);
     manager.queue(event2);
-    manager.series();
+    manager.transmit();
+    manager.deafen(callback);
+    manager.transmit();
+    manager.listen(callback2);
+    manager.transmit();
+    manager.clear();
+    Andromeda::System::Event::Window::Close event3;
+    manager.queue(event3);
+    manager.deafen(callback);
+    manager.deafen(callback2);
+    manager.listen(callback3);
+    manager.transmit();
 }

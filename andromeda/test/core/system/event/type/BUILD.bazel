@@ -23,8 +23,8 @@ cc_test(
         "window.cc",
     ],
     deps = [
-        "@andromeda//andromeda/core/system/event/type:window",
         "@andromeda//andromeda/core/system/event:manager",
+        "@andromeda//andromeda/core/system/event/type:window",
         "@gtest",
         "@gtest//:gtest_main",
     ],

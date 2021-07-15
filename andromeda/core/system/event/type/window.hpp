@@ -43,31 +43,4 @@ namespace Andromeda::System::Event {
             Restore() : Event({Andromeda::System::Structure::Status::Event::Unused}) {}
         };
     } /* Window */
-
-    // namespace Window {
-    //     class Close::Manager {
-    //       private:
-    //         using Callback = Andromeda::Structure::Callback<Andromeda::System::Event::Window::Close &>;
-    //       public:
-    //         void listen(Callback callback) {
-    //             m_Callbacks.push_back(callback);
-    //         }
-    //         void deafen(Callback callback) {
-    //             m_Callbacks.erase(std::remove_if(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [&callback](const Callback & other) {
-    //                 return callback.target<Callback>() == other.target<Callback>();
-    //             }));
-    //         }
-    //         void queue(Window::Close & event) {
-    //             m_Event = event;
-    //         }
-    //         void latest() {
-    //             std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [&](const Callback & callback) {
-    //                 callback(m_Event);
-    //             });
-    //         }
-    //       private:
-    //         std::vector<Callback> m_Callbacks;
-    //         Window::Close m_Event;
-    //     };
-    // } /* Window */
 } /* Andromeda::System::Event */

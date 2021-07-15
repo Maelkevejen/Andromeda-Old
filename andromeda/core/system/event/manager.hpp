@@ -21,7 +21,7 @@ namespace Andromeda::System::Event::Manager {
                 return callback.template target<Callback>() == other.template target<Callback>();
             }));
         }
-        void callback(Event & event) {
+        void transmit(Event & event) {
             std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [&](const Callback & callback) {
                 callback(event);
             });
@@ -51,11 +51,9 @@ namespace Andromeda::System::Event::Manager {
             m_Events.pop_back();
         }
         void clear() {
-            std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [&](Event & event) {
-                event.status = Andromeda::System::Structure::Status::Event::Used;
-            });
+            m_Events.clear();
         }
-        void series() {
+        void transmit() {
             std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [&](const Callback & callback) {
                 std::for_each(std::execution::seq, std::begin(m_Events), std::end(m_Events), [&](Event & event) {
                     callback(event);
