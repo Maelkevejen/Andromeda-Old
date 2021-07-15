@@ -24,6 +24,7 @@ cc_test(
     ],
     deps = [
         "@andromeda//andromeda/core/system/event/type:window",
+        "@andromeda//andromeda/core/system/event:manager",
         "@gtest",
         "@gtest//:gtest_main",
     ],
