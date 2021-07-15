@@ -13,7 +13,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
         glfwTerminate();
     }
     void Manager::initialize() {
-        auto glfw = glfwInit();
+        [[ maybe_unused ]] auto glfw = glfwInit();
         ANDROMEDA_CORE_ASSERT_MESSAGE(glfw == GLFW_TRUE, "Failed to initialize GLFW, code: {0}.", glfw);
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
         int count = 0;
@@ -27,5 +27,11 @@ namespace Andromeda::System::Linux::Graphics::Display {
     void Manager::create(Andromeda::System::Graphics::Display::Window::Configuration configuration) {
         ANDROMEDA_CORE_TRACE("Creating a Linux Display Manager.");
         m_Windows.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Window>(configuration));
+    }
+} /* Andromeda::System::Graphics::Display */
+
+namespace Andromeda::System::Graphics::Display {
+    std::unique_ptr<Manager> Manager::instantiate() {
+        return std::make_unique<Andromeda::System::Linux::Graphics::Display::Manager>();
     }
 } /* Andromeda::System::Graphics::Display */

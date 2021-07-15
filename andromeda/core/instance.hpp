@@ -33,6 +33,6 @@ namespace Andromeda {
         virtual const Instance::State & state() const = 0;
         virtual int code() const = 0;
 
+        static std::unique_ptr<Instance> instantiate();
     };
-    std::unique_ptr<Instance> instantiate();
 } /* Andromeda */
