@@ -15,7 +15,6 @@ namespace Andromeda::System::Linux::Graphics::Display {
         void initialize();
   
         void update() override;
-        void callbacks(Andromeda::System::Graphics::Display::Manager::Callbacks & callbacks) override;
         
         void create(Andromeda::System::Graphics::Display::Window::Configuration configuration) override;
 

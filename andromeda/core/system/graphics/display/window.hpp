@@ -31,13 +31,12 @@ namespace Andromeda::System::Graphics::Display {
             Position position;
             Viewport viewport;
             Options options;
-            Callbacks callbacks;
+            Callbacks * callbacks;
         };
       public:
         virtual ~Window() = default;
 
         virtual void update() = 0;
-        virtual void callbacks(Window::Callbacks & callbacks) = 0;
     };
     Andromeda::Structure::Concept::Tag bitmask(Andromeda::System::Graphics::Display::Window::Options);
 } /* Andromeda::System::Graphics::Display::Window */

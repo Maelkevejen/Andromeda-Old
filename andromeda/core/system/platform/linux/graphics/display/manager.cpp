@@ -6,7 +6,7 @@
 
 namespace Andromeda::System::Linux::Graphics::Display {
     Manager::Manager(Andromeda::System::Linux::Graphics::Display::Manager::Configuration configuration) : m_Configuration({configuration}) {
-        ANDROMEDA_CORE_TRACE("Linux Display Manager.");
+        ANDROMEDA_CORE_TRACE("Constructing a Linux Display Manager.");
         initialize();
     }
     Manager::~Manager() {
@@ -24,11 +24,9 @@ namespace Andromeda::System::Linux::Graphics::Display {
     void Manager::update() {
         ANDROMEDA_CORE_TRACE("Updating Linux Display Manager.");
     }
-    void Manager::callbacks(Andromeda::System::Graphics::Display::Manager::Callbacks & callbacks) { 
-        m_Configuration.callbacks = callbacks;
-    }
     void Manager::create(Andromeda::System::Graphics::Display::Window::Configuration configuration) {
-        ANDROMEDA_CORE_TRACE("Creating a Linux Display Manager.");
+        ANDROMEDA_CORE_TRACE("Creating a Linux Window.");
+        configuration.callbacks = m_Configuration.callbacks->window;
         m_Windows.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Window>(configuration));
     }
 } /* Andromeda::System::Graphics::Display */
