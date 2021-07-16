@@ -35,6 +35,7 @@ cc_library(
         "@andromeda//andromeda/core",
         "@andromeda//andromeda/core/system/event:manager",
         "@andromeda//andromeda/core/system/event/type:window",
+        "@andromeda//andromeda/core/system/input:manager",
         "@andromeda//andromeda/core/system/structure:bitmask",
     ],
 )

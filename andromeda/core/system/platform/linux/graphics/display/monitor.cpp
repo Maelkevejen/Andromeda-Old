@@ -42,10 +42,6 @@ namespace Andromeda::System::Linux::Graphics::Display {
                     configuration->callbacks->disconnect.transmit(event);
                     break;
                 }
-                default : {
-                    ANDROMEDA_CORE_ERROR("Unhandled GLFW Monitor Event type!");
-                    break;
-                }
             }
         });
     }

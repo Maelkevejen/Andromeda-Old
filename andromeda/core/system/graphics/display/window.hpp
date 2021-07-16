@@ -2,6 +2,7 @@
 
 #include "andromeda/core/core.hpp"
 #include "andromeda/core/system/structure/bitmask.hpp"
+#include "andromeda/core/system/input/manager.hpp"
 #include "andromeda/core/system/event/type/window.hpp"
 #include "andromeda/core/system/event/manager.hpp"
 
@@ -33,6 +34,9 @@ namespace Andromeda::System::Graphics::Display {
             Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Maximize> maximize;
             Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Minimize> minimize;
             Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Restore> restore;
+
+            /* Input Callbacks */
+            Andromeda::System::Input::Manager::Callbacks input;
         };
         struct Configuration {
             std::string title;

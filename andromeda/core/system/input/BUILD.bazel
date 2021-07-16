@@ -3,3 +3,15 @@
 package(
     default_visibility = ["//visibility:public"],
 )
+
+cc_library(
+    name = "manager",
+    hdrs = [
+        "manager.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/event:manager",
+        "@andromeda//andromeda/core/system/event/type:keyboard",
+        "@andromeda//andromeda/core/system/event/type:mouse",
+    ],
+)

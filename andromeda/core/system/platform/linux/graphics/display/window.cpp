@@ -40,11 +40,135 @@ namespace Andromeda::System::Linux::Graphics::Display {
     }
     void Window::callbacks() {
         ANDROMEDA_CORE_INFO("Setting Window {0} callbacks.", m_Configuration.title);
+
+        glfwSetWindowPosCallback(m_Native, [](GLFWwindow * window, int x, int y) {
+            auto configuration = static_cast<Window::Configuration *>(glfwGetWindowUserPointer(window));
+            configuration->position = {x, y};
+            Andromeda::System::Event::Window::Move event({x, y});
+            configuration->callbacks->move.transmit(event);
+        });
+
+        glfwSetWindowSizeCallback(m_Native, [](GLFWwindow * window, int x, int y) {
+            auto configuration = static_cast<Window::Configuration *>(glfwGetWindowUserPointer(window));
+            configuration->viewport = {x, y};
+            Andromeda::System::Event::Window::Resize event({x, y});
+            configuration->callbacks->resize.transmit(event);
+        });
+
         glfwSetWindowCloseCallback(m_Native, [](GLFWwindow * window) {
             auto configuration = static_cast<Window::Configuration *>(glfwGetWindowUserPointer(window));
             ANDROMEDA_CORE_TRACE("Closing Window {0}.", configuration->title);
             Andromeda::System::Event::Window::Close event;
             configuration->callbacks->close.transmit(event);
+        });
+
+        glfwSetWindowRefreshCallback(m_Native, [](GLFWwindow * window) {
+            auto configuration = static_cast<Window::Configuration *>(glfwGetWindowUserPointer(window));
+            Andromeda::System::Event::Window::Refresh event;
+            configuration->callbacks->refresh.transmit(event);
+        });
+
+        glfwSetWindowFocusCallback(m_Native, [](GLFWwindow * window, int focused) {
+            auto configuration = static_cast<Window::Configuration *>(glfwGetWindowUserPointer(window));
+            switch (focused) {
+                case GLFW_TRUE: {
+                    Andromeda::System::Event::Window::Focus event;
+                    configuration->callbacks->focus.transmit(event);
+                    break;
+                }
+                case GLFW_FALSE: {
+                    Andromeda::System::Event::Window::Defocus event;
+                    configuration->callbacks->defocus.transmit(event);
+                    break;
+                }
+            }
+        });
+
+        glfwSetWindowMaximizeCallback(m_Native, [](GLFWwindow * window, int maximized) {
+            auto configuration = static_cast<Window::Configuration *>(glfwGetWindowUserPointer(window));
+            switch (maximized) {
+                case GLFW_TRUE: {
+                    Andromeda::System::Event::Window::Maximize event;
+                    configuration->callbacks->maximize.transmit(event);
+                    break;
+                }
+                case GLFW_FALSE: {
+                    Andromeda::System::Event::Window::Restore event;
+                    configuration->callbacks->restore.transmit(event);
+                    break;
+                }
+            }
+        });
+
+        glfwSetWindowIconifyCallback(m_Native, [](GLFWwindow * window, int iconified) {
+            auto configuration = static_cast<Window::Configuration *>(glfwGetWindowUserPointer(window));
+            switch (iconified) {
+                case GLFW_TRUE: {
+                    Andromeda::System::Event::Window::Minimize event;
+                    configuration->callbacks->minimize.transmit(event);
+                    break;
+                }
+                case GLFW_FALSE: {
+                    Andromeda::System::Event::Window::Restore event;
+                    configuration->callbacks->restore.transmit(event);
+                    break;
+                }
+            }
+        });
+
+        glfwSetKeyCallback(m_Native, [](GLFWwindow * window, int key, int /*scancode*/, int action, int mods) {
+            auto configuration = static_cast<Window::Configuration *>(glfwGetWindowUserPointer(window));
+            switch (action) {
+                case GLFW_PRESS: {
+                    Andromeda::System::Event::Keyboard::Key::Press event(static_cast<Andromeda::System::Input::Code::Keyboard::Key>(key), static_cast<Andromeda::System::Input::Code::Keyboard::Mod>(mods),0);
+                    configuration->callbacks->input.keyboard.press.transmit(event);
+                    break;
+                }
+                case GLFW_RELEASE: {
+                    Andromeda::System::Event::Keyboard::Key::Release event(static_cast<Andromeda::System::Input::Code::Keyboard::Key>(key), static_cast<Andromeda::System::Input::Code::Keyboard::Mod>(mods));
+                    configuration->callbacks->input.keyboard.release.transmit(event);
+                    break;
+                }
+                case GLFW_REPEAT: {
+                    Andromeda::System::Event::Keyboard::Key::Press event(static_cast<Andromeda::System::Input::Code::Keyboard::Key>(key), static_cast<Andromeda::System::Input::Code::Keyboard::Mod>(mods),1);
+                    configuration->callbacks->input.keyboard.press.transmit(event);
+                    break;
+                }
+            }
+        });
+
+        glfwSetCharCallback(m_Native, [](GLFWwindow * window, unsigned int key) {
+            auto configuration = static_cast<Window::Configuration *>(glfwGetWindowUserPointer(window));
+            Andromeda::System::Event::Keyboard::Key::Type event(static_cast<Andromeda::System::Input::Code::Keyboard::Key>(key));
+            configuration->callbacks->input.keyboard.type.transmit(event);
+        });
+
+        glfwSetCursorPosCallback(m_Native, [](GLFWwindow * window, double x_Position, double y_Position) {
+            auto configuration = static_cast<Window::Configuration *>(glfwGetWindowUserPointer(window));
+            Andromeda::System::Event::Mouse::Move event({x_Position, y_Position});
+            configuration->callbacks->input.mouse.move.transmit(event);
+        });
+
+        glfwSetScrollCallback(m_Native, [](GLFWwindow * window, double x_Offset,  double y_Offset) {
+            auto configuration = static_cast<Window::Configuration *>(glfwGetWindowUserPointer(window));
+            Andromeda::System::Event::Mouse::Scroll event({x_Offset, y_Offset});
+            configuration->callbacks->input.mouse.scroll.transmit(event);
+        });
+
+        glfwSetMouseButtonCallback(m_Native, [](GLFWwindow * window, int button, int action, int mods) {
+            auto configuration = static_cast<Window::Configuration *>(glfwGetWindowUserPointer(window));
+            switch (action) {
+                case GLFW_PRESS: {
+                    Andromeda::System::Event::Mouse::Button::Press event(static_cast<Andromeda::System::Input::Code::Mouse::Button>(button), static_cast<Andromeda::System::Input::Code::Keyboard::Mod>(mods));
+                    configuration->callbacks->input.mouse.press.transmit(event);
+                    break;
+                }
+                case GLFW_RELEASE: {
+                    Andromeda::System::Event::Mouse::Button::Release event(static_cast<Andromeda::System::Input::Code::Mouse::Button>(button), static_cast<Andromeda::System::Input::Code::Keyboard::Mod>(mods));
+                    configuration->callbacks->input.mouse.release.transmit(event);
+                    break;
+                }
+            }
         });
     }
 } /* Andromeda::System::Linux::Graphics::Display */

@@ -16,4 +16,8 @@ cc_library(
     hdrs = [
         "key.hpp",
     ],
+    deps = [
+        "@andromeda//andromeda/core",
+        "@andromeda//andromeda/core/system/structure:bitmask",
+    ],
 )
