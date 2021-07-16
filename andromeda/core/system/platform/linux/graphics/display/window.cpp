@@ -29,7 +29,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
     }
 
     void Window::update() {
-        glfwPollEvents();
+
     }
     void Window::subscreen() {
         m_Native = glfwCreateWindow(m_Configuration.viewport.width, m_Configuration.viewport.height, m_Configuration.title.data(), nullptr, nullptr);
@@ -39,9 +39,9 @@ namespace Andromeda::System::Linux::Graphics::Display {
     }
     void Window::callbacks() {
         glfwSetWindowCloseCallback(m_Native, [](GLFWwindow * window) {
-            auto & configuration = * (Window::Configuration *) glfwGetWindowUserPointer(window);
+            auto configuration = static_cast<Window::Configuration *>(glfwGetWindowUserPointer(window));
             Andromeda::System::Event::Window::Close event;
-            configuration.callbacks->close.transmit(event);
+            configuration->callbacks->close.transmit(event);
         });
     }
 } /* Andromeda::System::Linux::Graphics::Display */

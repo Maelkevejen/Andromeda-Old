@@ -11,21 +11,20 @@ namespace Andromeda::System::Event::Manager {
     template <class Event>
     class Serial {
       private:
-        using Callback = Andromeda::Structure::Callback<Event &>;
+        using Callback = Andromeda::Structure::Callback<Event>;
       public:
         void listen(Callback callback) {
             m_Callbacks.push_back(callback);
         }
         void deafen(Callback callback) {
-            m_Callbacks.erase(std::remove_if(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [&callback](const Callback & other) {
+            m_Callbacks.erase(std::remove_if(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [& callback](const Callback & other) {
                 return callback.template target<Callback>() == other.template target<Callback>();
             }));
         }
-        void transmit(Event & event) {
-            std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [&](const Callback & callback) {
+        void transmit(Event event) {
+            std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [event](const Callback & callback) {
                 callback(event);
             });
-            event.status = Andromeda::System::Structure::Status::Event::Used;
         }
       private:
         std::vector<Callback> m_Callbacks;
@@ -34,17 +33,17 @@ namespace Andromeda::System::Event::Manager {
     template <class Event>
     class Parallel {
       private:
-        using Callback = Andromeda::Structure::Callback<Event &>;
+        using Callback = Andromeda::Structure::Callback<Event>;
       public:
         void listen(Callback callback) {
             m_Callbacks.push_back(callback);
         }
         void deafen(Callback callback) {
-            m_Callbacks.erase(std::remove_if(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [&callback](const Callback & other) {
+            m_Callbacks.erase(std::remove_if(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [& callback](const Callback & other) {
                 return callback.template target<Callback>() == other.template target<Callback>();
             }));
         }
-        void queue(Event & event) {
+        void queue(Event event) {
             m_Events.push_back(event);
         }
         void deque() {
@@ -55,14 +54,14 @@ namespace Andromeda::System::Event::Manager {
         }
         void transmit() {
             std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [&](const Callback & callback) {
-                std::for_each(std::execution::seq, std::begin(m_Events), std::end(m_Events), [&](Event & event) {
+                std::for_each(std::execution::seq, std::begin(m_Events), std::end(m_Events), [callback](Event event) {
                     callback(event);
                 });
             });
         }
         void parallel() {
             std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [&](const Callback & callback) {
-                std::for_each(std::execution::par, std::begin(m_Events), std::end(m_Events), [&](Event & event) {
+                std::for_each(std::execution::par_unseq, std::begin(m_Events), std::end(m_Events), [callback](Event event) {
                     callback(event);
                 });
             });

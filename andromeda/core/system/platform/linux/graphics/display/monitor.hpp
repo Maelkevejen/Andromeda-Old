@@ -7,9 +7,12 @@
 namespace Andromeda::System::Linux::Graphics::Display {
     class Monitor : public Andromeda::System::Graphics::Display::Monitor {
       public:
-        Monitor(GLFWmonitor * monitor);
+        Monitor(Andromeda::System::Graphics::Display::Monitor::Configuration configuration, GLFWmonitor * monitor);
 
         void update() override;
+
+      private:
+        void callbacks();
       private:
         Andromeda::System::Graphics::Display::Monitor::Configuration m_Configuration;
         GLFWmonitor * m_Native;

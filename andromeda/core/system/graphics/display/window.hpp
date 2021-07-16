@@ -24,7 +24,15 @@ namespace Andromeda::System::Graphics::Display {
             Fullscreen = Andromeda::Numerics::Bit(5),
         };
         struct Callbacks {
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Move> move;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Resize> resize;
             Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Close> close;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Refresh> refresh;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Focus> focus;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Defocus> defocus;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Maximize> maximize;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Minimize> minimize;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Restore> restore;
         };
         struct Configuration {
             std::string title;

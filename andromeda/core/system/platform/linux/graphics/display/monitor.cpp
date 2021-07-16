@@ -1,9 +1,10 @@
 #include "monitor.hpp"
 
 namespace Andromeda::System::Linux::Graphics::Display {
-    Monitor::Monitor(GLFWmonitor * monitor) : m_Native(monitor) {
+    Monitor::Monitor(Andromeda::System::Graphics::Display::Monitor::Configuration configuration, GLFWmonitor * monitor) : m_Configuration(configuration), m_Native(monitor) {
         glfwSetMonitorUserPointer(m_Native, & m_Configuration);
         update();
+        callbacks();
     }
     void Monitor::update() {
         m_Configuration.title = std::string(glfwGetMonitorName(m_Native));
@@ -18,6 +19,27 @@ namespace Andromeda::System::Linux::Graphics::Display {
             .width = mode->width,
             .height = mode->height,
         };
+    }
+
+    void Monitor::callbacks() {
+        glfwSetMonitorCallback([](GLFWmonitor * monitor, int event) {
+            auto configuration = static_cast<Monitor::Configuration *>(glfwGetMonitorUserPointer(monitor));
+            switch (event) {
+                case GLFW_CONNECTED: {
+                    Andromeda::System::Event::Monitor::Connect event;
+                    configuration->callbacks->connect.transmit(event);
+                    break;
+                }
+                case GLFW_DISCONNECTED: {
+                    Andromeda::System::Event::Monitor::Disconnect event;
+                    configuration->callbacks->disconnect.transmit(event);
+                    break;
+                }
+                default : {
+                    break;
+                }
+            }
+        });
     }
 
 } /* Andromeda::System::Linux::Graphics::Display */
