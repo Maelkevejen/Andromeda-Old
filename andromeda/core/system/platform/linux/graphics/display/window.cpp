@@ -29,7 +29,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
     }
 
     void Window::update() {
-
+        glfwPollEvents();
     }
     void Window::subscreen() {
         m_Native = glfwCreateWindow(m_Configuration.viewport.width, m_Configuration.viewport.height, m_Configuration.title.data(), nullptr, nullptr);
