@@ -3,11 +3,6 @@
 #include "andromeda/core/system/event/event.hpp"
 
 #include "andromeda/core/system/structure/tuple.hpp"
-#include "andromeda/core/system/log/log.hpp"
-
-#include <algorithm>
-#include <execution>
-#include <vector>
 
 namespace Andromeda::System::Event {
     namespace Window {

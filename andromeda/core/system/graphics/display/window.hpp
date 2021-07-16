@@ -3,6 +3,7 @@
 #include "andromeda/core/core.hpp"
 #include "andromeda/core/system/structure/bitmask.hpp"
 #include "andromeda/core/system/event/type/window.hpp"
+#include "andromeda/core/system/event/manager.hpp"
 
 namespace Andromeda::System::Graphics::Display {
     class Window {
@@ -22,16 +23,21 @@ namespace Andromeda::System::Graphics::Display {
             Subscreen  = Andromeda::Numerics::Bit(4),
             Fullscreen = Andromeda::Numerics::Bit(5),
         };
+        struct Callbacks {
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Close> close;
+        };
         struct Configuration {
             std::string title;
             Position position;
             Viewport viewport;
             Options options;
+            Callbacks callbacks;
         };
       public:
         virtual ~Window() = default;
 
         virtual void update() = 0;
+        virtual void callbacks(Window::Callbacks & callbacks) = 0;
     };
     Andromeda::Structure::Concept::Tag bitmask(Andromeda::System::Graphics::Display::Window::Options);
 } /* Andromeda::System::Graphics::Display::Window */

@@ -5,7 +5,7 @@
 #include "andromeda/core/system/log/log.hpp"
 
 namespace Andromeda::System::Linux::Graphics::Display {
-    Window::Window(Window::Configuration configuration) : m_Configuration(configuration) {
+    Window::Window(Window::Configuration configuration) : m_Configuration({configuration}) {
         initialize();
     }
 
@@ -31,6 +31,9 @@ namespace Andromeda::System::Linux::Graphics::Display {
     void Window::update() {
 
     }
+    void Window::callbacks(Window::Callbacks & callbacks) {
+        m_Configuration.callbacks = callbacks;
+    }
     void Window::subscreen() {
         m_Native = glfwCreateWindow(m_Configuration.viewport.width, m_Configuration.viewport.height, m_Configuration.title.data(), nullptr, nullptr);
     }
@@ -38,6 +41,10 @@ namespace Andromeda::System::Linux::Graphics::Display {
 
     }
     void Window::callbacks() {
-
+        glfwSetWindowCloseCallback(m_Native, [](GLFWwindow * window) {
+            auto & configuration = * (Window::Configuration *) glfwGetWindowUserPointer(window);
+            Andromeda::System::Event::Window::Close event;
+            configuration.callbacks.close.transmit(event);
+        });
     }
 } /* Andromeda::System::Linux::Graphics::Display */

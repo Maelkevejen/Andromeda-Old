@@ -13,6 +13,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
         ~Window() override;
 
         void update() override;
+        void callbacks(Window::Callbacks & callbacks) override;
 
       private:
         void initialize();
