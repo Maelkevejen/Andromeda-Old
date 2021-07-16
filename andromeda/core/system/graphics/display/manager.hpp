@@ -8,12 +8,20 @@
 namespace Andromeda::System::Graphics::Display {
     class Manager {
       public:
+        struct Callbacks {
+            Window::Callbacks callbacks;
+        };
+        struct Configuration {
+            Callbacks callbacks;
+        };
+      public:
         virtual ~Manager() = default;
 
         virtual void update() = 0;
+        virtual void callbacks(Manager::Callbacks & callbacks) = 0;
 
         virtual void create(Window::Configuration configuration) = 0;
 
-        static std::unique_ptr<Manager> instantiate();
+        static std::unique_ptr<Manager> instantiate(Manager::Configuration configuration);
     };
 } /* Andromeda::System::Graphics::Display */

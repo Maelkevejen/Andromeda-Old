@@ -4,7 +4,8 @@
 
 TEST(Manager, DISABLED_Window) {
     EXPECT_NO_THROW({
-        auto dm = Andromeda::System::Graphics::Display::Manager::instantiate();
+        Andromeda::System::Graphics::Display::Manager::Configuration configuration;
+        auto dm = Andromeda::System::Graphics::Display::Manager::instantiate(configuration);
         dm->create(Andromeda::System::Graphics::Display::Window::Configuration{
             .title = "test",
             .position = {0, 0},

@@ -33,7 +33,6 @@ cc_library(
     ],
     deps = [
         "@andromeda//andromeda/core/system/event",
-        "@andromeda//andromeda/core/system/log",
         "@andromeda//andromeda/core/system/structure:tuple",
     ],
 )
