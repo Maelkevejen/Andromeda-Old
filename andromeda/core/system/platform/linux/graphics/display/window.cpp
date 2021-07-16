@@ -31,9 +31,6 @@ namespace Andromeda::System::Linux::Graphics::Display {
     void Window::update() {
 
     }
-    void Window::callbacks(Window::Callbacks & callbacks) {
-        m_Configuration.callbacks = callbacks;
-    }
     void Window::subscreen() {
         m_Native = glfwCreateWindow(m_Configuration.viewport.width, m_Configuration.viewport.height, m_Configuration.title.data(), nullptr, nullptr);
     }
@@ -44,7 +41,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
         glfwSetWindowCloseCallback(m_Native, [](GLFWwindow * window) {
             auto & configuration = * (Window::Configuration *) glfwGetWindowUserPointer(window);
             Andromeda::System::Event::Window::Close event;
-            configuration.callbacks.close.transmit(event);
+            configuration.callbacks->close.transmit(event);
         });
     }
 } /* Andromeda::System::Linux::Graphics::Display */

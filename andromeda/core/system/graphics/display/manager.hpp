@@ -9,16 +9,15 @@ namespace Andromeda::System::Graphics::Display {
     class Manager {
       public:
         struct Callbacks {
-            Window::Callbacks callbacks;
+            Window::Callbacks * window;
         };
         struct Configuration {
-            Callbacks callbacks;
+            Callbacks * callbacks;
         };
       public:
         virtual ~Manager() = default;
 
         virtual void update() = 0;
-        virtual void callbacks(Manager::Callbacks & callbacks) = 0;
 
         virtual void create(Window::Configuration configuration) = 0;
 
