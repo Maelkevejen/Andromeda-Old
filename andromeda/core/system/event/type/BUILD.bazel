@@ -32,6 +32,7 @@ cc_library(
     ],
     deps = [
         "@andromeda//andromeda/core/system/event",
+        "@andromeda//andromeda/core/system/input/code:key",
         "@andromeda//andromeda/core/system/input/code:mouse",
         "@andromeda//andromeda/core/system/structure:tuple",
     ],

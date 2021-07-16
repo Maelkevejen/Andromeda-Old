@@ -1,6 +1,9 @@
 #pragma once
 
-namespace Andromeda::System::Input::Code {
+#include "andromeda/core/core.hpp"
+#include "andromeda/core/system/structure/bitmask.hpp"
+
+namespace Andromeda::System::Input::Code::Keyboard {
     enum class Key {
         Space               = 32,
         Apostrophe          = 39, /* ' */
@@ -133,4 +136,14 @@ namespace Andromeda::System::Input::Code {
         RightSuper          = 347,
         Menu                = 348,
     };
-} /* Andromeda::System::Input::Code */
+    enum class Mod {
+        None                = 0,
+        Shift               = 1,
+        Control             = 2,
+        Alt                 = 4,
+        Super               = 8,
+        Capslock            = 16,
+        Numlock             = 32,
+    };
+    Andromeda::Structure::Concept::Tag bitmask(Andromeda::System::Input::Code::Keyboard::Mod);
+} /* Andromeda::System::Input::Code::Keyboard */

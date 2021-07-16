@@ -6,10 +6,15 @@ namespace Andromeda::System::Linux::Graphics::Display {
     Monitor::Monitor(Andromeda::System::Graphics::Display::Monitor::Configuration configuration, GLFWmonitor * monitor) : m_Configuration(configuration), m_Native(monitor) {
         glfwSetMonitorUserPointer(m_Native, & m_Configuration);
         ANDROMEDA_CORE_INFO("Obtaining Monitor.");
-        update();
+        configure();
         callbacks();
     }
+
     void Monitor::update() {
+
+    }
+
+    void Monitor::configure() {
         m_Configuration.title = std::string(glfwGetMonitorName(m_Native));
         glfwGetMonitorPos(m_Native, & m_Configuration.position.x, & m_Configuration.position.y);
         glfwGetMonitorWorkarea(m_Native, & m_Configuration.area.x, & m_Configuration.area.y, & m_Configuration.area.width, & m_Configuration.area.height);
@@ -31,19 +36,15 @@ namespace Andromeda::System::Linux::Graphics::Display {
             auto configuration = static_cast<Monitor::Configuration *>(glfwGetMonitorUserPointer(monitor));
             switch (event) {
                 case GLFW_CONNECTED: {
-                    ANDROMEDA_CORE_TRACE("Connected Monitor.");
                     Andromeda::System::Event::Monitor::Connect event;
                     configuration->callbacks->connect.transmit(event);
+                    ANDROMEDA_CORE_TRACE("Connected Monitor {0}.", configuration->title);
                     break;
                 }
                 case GLFW_DISCONNECTED: {
-                    ANDROMEDA_CORE_TRACE("Disconnected Monitor.");
                     Andromeda::System::Event::Monitor::Disconnect event;
                     configuration->callbacks->disconnect.transmit(event);
-                    break;
-                }
-                default : {
-                    ANDROMEDA_CORE_ERROR("Unhandled GLFW Monitor Event type!");
+                    ANDROMEDA_CORE_TRACE("Disconnected Monitor {0}.", configuration->title);
                     break;
                 }
             }

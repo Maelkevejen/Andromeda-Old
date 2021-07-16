@@ -12,6 +12,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
         void update() override;
 
       private:
+        void configure();
         void callbacks();
       private:
         Andromeda::System::Graphics::Display::Monitor::Configuration m_Configuration;

@@ -11,6 +11,12 @@ namespace Andromeda::System::Linux::Graphics::Display {
 
         void update() override;
 
+      public:
+        bool pressed(Andromeda::System::Input::Code::Keyboard::Key key) const override;
+        bool pressed(Andromeda::System::Input::Code::Keyboard::Mod mod) const override;
+        bool pressed(Andromeda::System::Input::Code::Mouse::Button button) const override;
+        Andromeda::System::Structure::Duo<double> mouse() const override;
+
       private:
         void initialize();
         void subscreen();
