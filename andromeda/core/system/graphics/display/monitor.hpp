@@ -21,6 +21,7 @@ namespace Andromeda::System::Graphics::Display {
             int width, height;
         };
         struct Callbacks {
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Monitor::Connect> connect;
             Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Monitor::Disconnect> disconnect;
         };
         struct Configuration {
@@ -28,6 +29,7 @@ namespace Andromeda::System::Graphics::Display {
             Position position;
             Area area;
             Mode mode;
+            Callbacks * callbacks;
         };
       public:
         virtual ~Monitor() = default;

@@ -20,16 +20,13 @@ namespace Andromeda::System::Linux::Graphics::Display {
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
         int count = 0;
         auto monitors = glfwGetMonitors(&count);
-        for (int monitor = 0; monitor < count; monitor++) m_Monitors.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Monitor>(monitors[monitor]));
+        for (int monitor = 0; monitor < count; monitor++) m_Monitors.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Monitor>(Andromeda::System::Graphics::Display::Monitor::Configuration {.callbacks = m_Configuration.callbacks.monitor}, monitors[monitor]));
         ANDROMEDA_CORE_INFO("Initialzed {0} monitors.", m_Monitors.size());
     }
     void Manager::update() {
-        ANDROMEDA_CORE_TRACE("Updating Linux Display Manager.");
-        std::for_each(std::execution::par, std::begin(m_Windows), std::end(m_Windows), [](auto & window) {
+        glfwPollEvents();
+        std::for_each(std::execution::par_unseq, std::begin(m_Windows), std::end(m_Windows), [](auto & window) {
             window->update();
-        });
-        std::for_each(std::execution::par, std::begin(m_Monitors), std::end(m_Monitors), [](auto & monitor) {
-            monitor->update();
         });
     }
     void Manager::create(Andromeda::System::Graphics::Display::Window::Configuration configuration) {

@@ -10,6 +10,7 @@ namespace Andromeda::System::Graphics::Display {
       public:
         struct Callbacks {
             Window::Callbacks * window;
+            Monitor::Callbacks * monitor;
         };
         struct Configuration {
             Callbacks callbacks;

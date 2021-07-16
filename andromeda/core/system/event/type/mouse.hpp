@@ -6,13 +6,11 @@
 namespace Andromeda::System::Event {
     namespace Mouse {
         struct Move : public Event < Type::Move, Group::Input + Group::Mouse > {
-            Move(System::Structure::Duo<int> position) : Event({Andromeda::System::Structure::Status::Event::Unused}), position({position}) {}
-            Move(System::Structure::Duo<int> position, Andromeda::System::Structure::Status::Event status) : Event({status}), position({position}) {}
+            Move(System::Structure::Duo<int> position) : position({position}) {}
             System::Structure::Duo<int> position;
         };
         struct Scroll : public Event < Type::Scroll, Group::Input + Group::Mouse > {
-            Scroll(System::Structure::Duo<float> offset) : Event({Andromeda::System::Structure::Status::Event::Unused}), offset({offset}) {}
-            Scroll(System::Structure::Duo<float> offset, Andromeda::System::Structure::Status::Event status) : Event({status}), offset({offset}) {}
+            Scroll(System::Structure::Duo<float> offset) : offset({offset}) {}
             System::Structure::Duo<float> offset;
         };
     } /* Mouse */

@@ -29,6 +29,6 @@ namespace Andromeda::System::Event {
 
     template<Type T, Group G>
     struct Event {
-        Andromeda::System::Structure::Status::Event status;
+
     };
 } /* Andromeda::System::Event */

@@ -6,9 +6,6 @@ struct Basic : Andromeda::System::Event::Event<Andromeda::System::Event::Type::G
 
 TEST(Event, Create) {
     EXPECT_NO_THROW({
-        auto test = Basic();
-        EXPECT_EQ(test.status, Andromeda::System::Structure::Status::Event::Unused);
-        test.status = Andromeda::System::Structure::Status::Event::Used;
-        EXPECT_EQ(test.status, Andromeda::System::Structure::Status::Event::Used);
+        [[ maybe_unused ]] auto test = Basic();
     });
 }
