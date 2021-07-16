@@ -1,6 +1,8 @@
 #pragma once
 
 #include "andromeda/core/system/graphics/display/manager.hpp"
+#include "andromeda/core/system/input/manager.hpp"
+#include "andromeda/core/system/input/state.hpp"
 
 #include "monitor.hpp"
 #include "window.hpp"
