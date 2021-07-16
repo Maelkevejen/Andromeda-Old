@@ -26,7 +26,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
     }
     void Manager::create(Andromeda::System::Graphics::Display::Window::Configuration configuration) {
         ANDROMEDA_CORE_TRACE("Creating a Linux Window.");
-        configuration.callbacks = m_Configuration.callbacks->window;
+        configuration.callbacks = m_Configuration.callbacks.window;
         m_Windows.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Window>(configuration));
     }
 } /* Andromeda::System::Graphics::Display */

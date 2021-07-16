@@ -13,9 +13,9 @@ namespace Andromeda::System::Linux::Graphics::Display {
         ~Manager() override;
 
         void initialize();
-  
+
         void update() override;
-        
+
         void create(Andromeda::System::Graphics::Display::Window::Configuration configuration) override;
 
       private:

@@ -1,5 +1,8 @@
 #pragma once
 
+#include "andromeda/core/system/event/type/monitor.hpp"
+#include "andromeda/core/system/event/manager.hpp"
+
 #include <string>
 
 namespace Andromeda::System::Graphics::Display {
@@ -16,6 +19,9 @@ namespace Andromeda::System::Graphics::Display {
             int red, green, blue;
             int frequency;
             int width, height;
+        };
+        struct Callbacks {
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Monitor::Disconnect> disconnect;
         };
         struct Configuration {
             std::string title;

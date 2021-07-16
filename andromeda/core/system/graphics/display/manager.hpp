@@ -12,7 +12,7 @@ namespace Andromeda::System::Graphics::Display {
             Window::Callbacks * window;
         };
         struct Configuration {
-            Callbacks * callbacks;
+            Callbacks callbacks;
         };
       public:
         virtual ~Manager() = default;
