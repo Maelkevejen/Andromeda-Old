@@ -20,6 +20,10 @@ cc_library(
     hdrs = [
         "monitor.hpp",
     ],
+    deps = [
+        "@andromeda//andromeda/core/system/event:manager",
+        "@andromeda//andromeda/core/system/event/type:monitor",
+    ],
 )
 
 cc_library(
@@ -29,8 +33,8 @@ cc_library(
     ],
     deps = [
         "@andromeda//andromeda/core",
+        "@andromeda//andromeda/core/system/event:manager",
         "@andromeda//andromeda/core/system/event/type:window",
         "@andromeda//andromeda/core/system/structure:bitmask",
-        "@andromeda//andromeda/core/system/event:manager",
     ],
 )
