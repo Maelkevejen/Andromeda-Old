@@ -10,13 +10,6 @@ TEST(Status, Runtime) {
     });
 }
 
-TEST(Status, Event) {
-    using namespace Andromeda::System::Structure::Status;
-    EXPECT_NO_THROW({
-        EXPECT_FALSE(Event::Unused == Event::Used || Event::Used == Event::Removed || Event::Removed == Event::Misplaced || Event::Misplaced == Event::Errored);
-    });
-}
-
 TEST(Status, Error) {
     using namespace Andromeda::System::Structure::Status;
     EXPECT_NO_THROW({

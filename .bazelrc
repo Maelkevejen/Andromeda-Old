@@ -15,7 +15,7 @@ build --repo_env=CC=clang++
 
 build:debug --compilation_mode=dbg
 build:debug --config=assert:all
-build:debug --config=log:trace
+build:debug --config=log:info
 build:debug --config=warning:all
 
 build:release --compilation_mode=opt

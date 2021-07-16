@@ -61,13 +61,13 @@ TEST(Event, Restore) {
 
 TEST(Event, Serial_Callback) {
     auto callback = [](Andromeda::System::Event::Window::Move move) {
-        EXPECT_TRUE(move.position == Andromeda::System::Structure::Duo<int>({0,0}));
+        EXPECT_TRUE(move.position == Andromeda::System::Structure::Duo<int>({0, 0}));
     };
     Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Move> manager;
     manager.listen(callback);
-    Andromeda::System::Event::Window::Move event1({0,0});
+    Andromeda::System::Event::Window::Move event1({0, 0});
     manager.transmit(event1);
-    Andromeda::System::Event::Window::Move event2({0,0});
+    Andromeda::System::Event::Window::Move event2({0, 0});
     manager.deafen(callback);
     manager.transmit(event1);
     manager.listen(callback);

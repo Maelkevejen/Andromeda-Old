@@ -36,8 +36,8 @@ cc_library(
         "@platforms//os:linux",
     ],
     deps = [
-        "@andromeda//andromeda/core/system/event/type:monitor",
         "@andromeda//andromeda/core/system/graphics/display:monitor",
+        "@andromeda//andromeda/core/system/log",
         "@glfw",
     ],
 )

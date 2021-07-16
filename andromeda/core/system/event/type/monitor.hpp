@@ -1,7 +1,6 @@
 #pragma once
 
 #include "andromeda/core/system/event/event.hpp"
-#include "andromeda/core/system/structure/tuple.hpp"
 
 namespace Andromeda::System::Event {
     namespace Monitor {
