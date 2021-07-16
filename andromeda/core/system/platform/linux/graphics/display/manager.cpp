@@ -4,6 +4,8 @@
 
 #include <GLFW/glfw3.h>
 
+#include <execution>
+
 namespace Andromeda::System::Linux::Graphics::Display {
     Manager::Manager(Andromeda::System::Linux::Graphics::Display::Manager::Configuration configuration) : m_Configuration({configuration}) {
         ANDROMEDA_CORE_TRACE("Constructing a Linux Display Manager.");
@@ -23,6 +25,12 @@ namespace Andromeda::System::Linux::Graphics::Display {
     }
     void Manager::update() {
         ANDROMEDA_CORE_TRACE("Updating Linux Display Manager.");
+        std::for_each(std::execution::par, std::begin(m_Windows), std::end(m_Windows), [](auto & window) {
+            window->update();
+        });
+        std::for_each(std::execution::par, std::begin(m_Monitors), std::end(m_Monitors), [](auto & monitor) {
+            monitor->update();
+        });
     }
     void Manager::create(Andromeda::System::Graphics::Display::Window::Configuration configuration) {
         ANDROMEDA_CORE_TRACE("Creating a Linux Window.");
