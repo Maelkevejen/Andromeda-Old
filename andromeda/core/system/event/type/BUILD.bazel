@@ -5,13 +5,23 @@ package(
 )
 
 cc_library(
+    name = "keyboard",
+    hdrs = [
+        "keyboard.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/event",
+        "@andromeda//andromeda/core/system/input/code:key",
+    ],
+)
+
+cc_library(
     name = "monitor",
     hdrs = [
         "monitor.hpp",
     ],
     deps = [
         "@andromeda//andromeda/core/system/event",
-        "@andromeda//andromeda/core/system/structure:tuple",
     ],
 )
 
@@ -22,6 +32,7 @@ cc_library(
     ],
     deps = [
         "@andromeda//andromeda/core/system/event",
+        "@andromeda//andromeda/core/system/input/code:mouse",
         "@andromeda//andromeda/core/system/structure:tuple",
     ],
 )

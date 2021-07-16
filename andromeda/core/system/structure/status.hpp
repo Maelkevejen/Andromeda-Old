@@ -8,13 +8,6 @@ namespace Andromeda::System::Structure::Status {
         Terminated,
         Nullified,
     };
-    enum class Event {
-        Unused = 0,
-        Used,
-        Removed,
-        Misplaced,
-        Errored,
-    };
     enum class Error {
         Undefined = 0,
         None,

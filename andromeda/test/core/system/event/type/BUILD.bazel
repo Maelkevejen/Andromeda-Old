@@ -6,6 +6,30 @@ package(
 )
 
 cc_test(
+    name = "keyboard",
+    srcs = [
+        "keyboard.cc",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/event/type:keyboard",
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+)
+
+cc_test(
+    name = "monitor",
+    srcs = [
+        "monitor.cc",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/event/type:monitor",
+        "@gtest",
+        "@gtest//:gtest_main",
+    ],
+)
+
+cc_test(
     name = "mouse",
     srcs = [
         "mouse.cc",

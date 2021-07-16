@@ -1,0 +1,19 @@
+# ::andromeda::core::system::input::code
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "mouse",
+    hdrs = [
+        "mouse.hpp",
+    ],
+)
+
+cc_library(
+    name = "key",
+    hdrs = [
+        "key.hpp",
+    ],
+)

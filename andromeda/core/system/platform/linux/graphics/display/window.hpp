@@ -3,9 +3,6 @@
 #include "andromeda/core/system/graphics/display/window.hpp"
 
 #include <GLFW/glfw3.h>
-
-#include <memory>
-
 namespace Andromeda::System::Linux::Graphics::Display {
     class Window : public Andromeda::System::Graphics::Display::Window {
       public:
