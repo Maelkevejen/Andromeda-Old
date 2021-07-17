@@ -7,7 +7,7 @@
 namespace Andromeda::System::Event {
     enum class Type {
         Group = 0,
-        Tick, Update, Render, Terminate,
+        Tick, Update, Render, Initialize, Interrupt, Execute, Terminate,
         Connect, Disconnect,
         Move, Close, Resize, Refresh, Focus, Defocus, Maximize, Minimize, Restore,
         Press, Release, Type,
@@ -28,7 +28,5 @@ namespace Andromeda::System::Event {
     Andromeda::Structure::Concept::Tag bitmask(Andromeda::System::Event::Group);
 
     template<Type T, Group G>
-    struct Event {
-
-    };
+    struct Event {};
 } /* Andromeda::System::Event */

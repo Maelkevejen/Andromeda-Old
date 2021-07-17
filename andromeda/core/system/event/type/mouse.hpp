@@ -1,9 +1,9 @@
 #pragma once
 
 #include "andromeda/core/system/event/event.hpp"
-#include "andromeda/core/system/structure/tuple.hpp"
 #include "andromeda/core/system/input/code/key.hpp"
 #include "andromeda/core/system/input/code/mouse.hpp"
+#include "andromeda/core/system/structure/tuple.hpp"
 
 namespace Andromeda::System::Event {
     namespace Mouse {
@@ -29,6 +29,6 @@ namespace Andromeda::System::Event {
                 Andromeda::System::Input::Code::Mouse::Button button;
                 Andromeda::System::Input::Code::Keyboard::Mod mod;
             };
-        };
+        }; /* Button */
     } /* Mouse */
 } /* Andromeda::System::Event */

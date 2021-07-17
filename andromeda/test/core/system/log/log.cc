@@ -1,6 +1,6 @@
-#include "gtest/gtest.h"
-
 #include "andromeda/core/system/log/log.hpp"
+
+#include "gtest/gtest.h"
 
 TEST(System, Log) {
     EXPECT_NO_THROW({

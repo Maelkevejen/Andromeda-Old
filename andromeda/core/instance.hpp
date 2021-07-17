@@ -1,10 +1,10 @@
 #pragma once
 
-#include <memory>
-#include <string>
-
 #include "andromeda/core/system/log/log.hpp"
 #include "andromeda/core/system/structure/status.hpp"
+
+#include <memory>
+#include <string>
 
 namespace Andromeda {
     class Instance {

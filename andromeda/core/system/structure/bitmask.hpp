@@ -1,8 +1,8 @@
 #pragma once
 
-#include <concepts>
-
 #include "andromeda/core/core.hpp"
+
+#include <concepts>
 
 namespace Andromeda::Structure::Concept {
     template <class T>

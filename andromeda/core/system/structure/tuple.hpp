@@ -1,6 +1,5 @@
 #pragma once
 
-
 namespace Andromeda::System::Structure {
     template<typename Element>
     struct Duo {

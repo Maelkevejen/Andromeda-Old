@@ -1,12 +1,13 @@
 #pragma once
 
-#include <memory>
 
 #include "andromeda/core/core.hpp"
 #include "andromeda/core/instance.hpp"
 #include "andromeda/core/system/log/log.hpp"
 
-int main(int, const char *[]) {
+#include <memory>
+
+int main(int, const char * []) {
     auto instance = Andromeda::Instance::instantiate();
 
     Andromeda::System::Log::initialize({instance->configuration().log});

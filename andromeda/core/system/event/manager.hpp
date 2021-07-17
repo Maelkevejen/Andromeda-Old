@@ -8,10 +8,10 @@
 
 namespace Andromeda::System::Event::Manager {
 
-    template <class Event>
+    template <class Event, class ... Arguments>
     class Serial {
       private:
-        using Callback = Andromeda::Structure::Callback<Event>;
+        using Callback = Andromeda::Structure::Callback<Event, Arguments ...>;
       public:
         void listen(Callback callback) {
             m_Callbacks.push_back(callback);
@@ -21,19 +21,19 @@ namespace Andromeda::System::Event::Manager {
                 return callback.template target<Callback>() == other.template target<Callback>();
             }));
         }
-        void transmit(Event event) {
-            std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [event](const Callback & callback) {
-                callback(event);
+        void transmit(Event event, Arguments ... arguments) {
+            std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [event = std::forward<Event>(event), ... arguments = std::forward<Arguments>(arguments)](const Callback & callback) {
+                callback(event, arguments ...);
             });
         }
       private:
         std::vector<Callback> m_Callbacks;
     };
 
-    template <class Event>
+    template <class Event, class ... Arguments>
     class Parallel {
       private:
-        using Callback = Andromeda::Structure::Callback<Event>;
+        using Callback = Andromeda::Structure::Callback<Event, Arguments ...>;
       public:
         void listen(Callback callback) {
             m_Callbacks.push_back(callback);
@@ -52,23 +52,24 @@ namespace Andromeda::System::Event::Manager {
         void clear() {
             m_Events.clear();
         }
-        void transmit() {
+        void transmit(Arguments ... arguments) {
             std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [&](const Callback & callback) {
-                std::for_each(std::execution::seq, std::begin(m_Events), std::end(m_Events), [callback](Event event) {
-                    callback(event);
+                std::for_each(std::execution::seq, std::begin(m_Events), std::end(m_Events), [callback, ... arguments = std::forward<Arguments>(arguments)](Event event) {
+                    callback(event, arguments ...);
                 });
             });
         }
-        void parallel() {
+        void parallel(Arguments ... arguments) {
             std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [&](const Callback & callback) {
-                std::for_each(std::execution::par_unseq, std::begin(m_Events), std::end(m_Events), [callback](Event event) {
-                    callback(event);
+                std::for_each(std::execution::par_unseq, std::begin(m_Events), std::end(m_Events), [callback, ... arguments = std::forward<Arguments>(arguments)](Event event) {
+                    callback(event, arguments ...);
                 });
             });
         }
-        void latest() {
-            std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [&](const Callback & callback) {
-                callback(m_Events.back());
+        void latest(Arguments ... arguments) {
+            auto back = m_Events.back();
+            std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [ &, back = std::forward<Event>(back), ... arguments = std::forward<Arguments>(arguments)](const Callback & callback) {
+                callback(back, arguments ...);
             });
         }
       private:

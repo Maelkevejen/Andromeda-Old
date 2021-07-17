@@ -22,6 +22,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
         int count = 0;
         auto monitors = glfwGetMonitors(& count);
+
         for (int monitor = 0; monitor < count; monitor++) m_Monitors.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Monitor>(Andromeda::System::Graphics::Display::Monitor::Configuration {.callbacks = m_Configuration.callbacks.monitor}, monitors[monitor]));
         ANDROMEDA_CORE_INFO("Initialzed {0} monitors.", m_Monitors.size());
     }
@@ -34,18 +35,22 @@ namespace Andromeda::System::Linux::Graphics::Display {
     }
 
     bool Manager::pressed(Andromeda::System::Input::Code::Keyboard::Key key) const {
+        ANDROMEDA_CORE_TRACE("Query focused window keystate.");
         return m_Windows.front()->pressed(key);
     }
 
     bool Manager::pressed(Andromeda::System::Input::Code::Keyboard::Mod mod) const {
+        ANDROMEDA_CORE_TRACE("Query focused window keymod state.");
         return m_Windows.front()->pressed(mod);
     }
 
     bool Manager::pressed(Andromeda::System::Input::Code::Mouse::Button button) const {
+        ANDROMEDA_CORE_TRACE("Query focused window mouse button state.");
         return m_Windows.front()->pressed(button);
     }
 
     Andromeda::System::Structure::Duo<double> Manager::mouse() const {
+        ANDROMEDA_CORE_TRACE("Query focused window mouse state.");
         return m_Windows.front()->mouse();
     }
 
@@ -53,6 +58,17 @@ namespace Andromeda::System::Linux::Graphics::Display {
         ANDROMEDA_CORE_TRACE("Creating a Linux Window.");
         configuration.callbacks = m_Configuration.callbacks.window;
         m_Windows.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Window>(configuration));
+    }
+
+    void Manager::callbacks() {
+        ANDROMEDA_CORE_INFO("Setting Linux Display Manager callbacks.");
+        m_Configuration.callbacks.window->focus.listen([&](Andromeda::System::Event::Window::Focus, const Andromeda::System::Graphics::Display::Window * window) {
+            auto pivot = std::find_if(std::execution::par, std::begin(m_Windows), std::end(m_Windows), [&](const auto & m_Window) {
+                return window == m_Window.get();
+            });
+
+            if (pivot != std::end(m_Windows)) std::rotate(std::begin(m_Windows), pivot, pivot + 1);
+        });
     }
 } /* Andromeda::System::Graphics::Display */
 

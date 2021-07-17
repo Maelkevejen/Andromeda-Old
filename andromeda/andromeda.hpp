@@ -6,6 +6,8 @@
 #include "andromeda/core/system/event/event.hpp"
 #include "andromeda/core/system/event/manager.hpp"
 
+#include "andromeda/core/system/graphics/api/engine.hpp"
+
 #include "andromeda/core/system/graphics/display/manager.hpp"
 #include "andromeda/core/system/graphics/display/monitor.hpp"
 #include "andromeda/core/system/graphics/display/window.hpp"
