@@ -20,7 +20,6 @@ cc_library(
         ":window",
         "@andromeda//andromeda/core/system/graphics/display:manager",
         "@andromeda//andromeda/core/system/input:manager",
-        "@andromeda//andromeda/core/system/input:state",
         "@andromeda//andromeda/core/system/log",
         "@glfw",
     ],

@@ -34,7 +34,7 @@ namespace Andromeda::System::Graphics::Display {
             Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Maximize> maximize;
             Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Minimize> minimize;
             Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Restore> restore;
-            
+
             /* Input Callbacks */
             Andromeda::System::Input::Manager::Callbacks input;
         };

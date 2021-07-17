@@ -32,6 +32,23 @@ namespace Andromeda::System::Linux::Graphics::Display {
             window->update();
         });
     }
+
+    bool Manager::pressed(Andromeda::System::Input::Code::Keyboard::Key key) const {
+        return m_Windows.front()->pressed(key);
+    }
+
+    bool Manager::pressed(Andromeda::System::Input::Code::Keyboard::Mod mod) const {
+        return m_Windows.front()->pressed(mod);
+    }
+
+    bool Manager::pressed(Andromeda::System::Input::Code::Mouse::Button button) const {
+        return m_Windows.front()->pressed(button);
+    }
+
+    Andromeda::System::Structure::Duo<double> Manager::mouse() const {
+        return m_Windows.front()->mouse();
+    }
+
     void Manager::create(Andromeda::System::Graphics::Display::Window::Configuration configuration) {
         ANDROMEDA_CORE_TRACE("Creating a Linux Window.");
         configuration.callbacks = m_Configuration.callbacks.window;
@@ -43,20 +60,5 @@ namespace Andromeda::System::Graphics::Display {
     std::unique_ptr<Manager> Manager::instantiate(Manager::Configuration configuration) {
         ANDROMEDA_CORE_INFO("Instantiating a Linux Display Manager.");
         return std::make_unique<Andromeda::System::Linux::Graphics::Display::Manager>(configuration);
-    }
-} /* Andromeda::System::Graphics::Display */
-
-namespace Andromeda::System::Input {
-    bool pressed(Andromeda::System::Input::Code::Keyboard::Key key, Andromeda::System::Graphics::Display::Window & window) {
-        return window.pressed(key);
-    }
-    bool pressed(Andromeda::System::Input::Code::Keyboard::Mod mod, Andromeda::System::Graphics::Display::Window & window) {
-        return window.pressed(mod);
-    }
-    bool pressed(Andromeda::System::Input::Code::Mouse::Button button, Andromeda::System::Graphics::Display::Window & window) {
-        return window.pressed(button);
-    }
-    Andromeda::System::Structure::Duo<double> mouse(Andromeda::System::Graphics::Display::Window & window) {
-        return window.mouse();
     }
 } /* Andromeda::System::Graphics::Display */

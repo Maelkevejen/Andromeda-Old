@@ -1,8 +1,6 @@
 #pragma once
 
 #include "andromeda/core/system/graphics/display/manager.hpp"
-#include "andromeda/core/system/input/manager.hpp"
-#include "andromeda/core/system/input/state.hpp"
 
 #include "monitor.hpp"
 #include "window.hpp"
@@ -17,6 +15,11 @@ namespace Andromeda::System::Linux::Graphics::Display {
         void initialize();
 
         void update() override;
+
+        bool pressed(Andromeda::System::Input::Code::Keyboard::Key key) const override;
+        bool pressed(Andromeda::System::Input::Code::Keyboard::Mod mod) const override;
+        bool pressed(Andromeda::System::Input::Code::Mouse::Button button) const override;
+        Andromeda::System::Structure::Duo<double> mouse() const override;
 
         void create(Andromeda::System::Graphics::Display::Window::Configuration configuration) override;
 
