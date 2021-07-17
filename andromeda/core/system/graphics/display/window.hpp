@@ -1,10 +1,10 @@
 #pragma once
 
 #include "andromeda/core/core.hpp"
-#include "andromeda/core/system/structure/bitmask.hpp"
 #include "andromeda/core/system/input/manager.hpp"
 #include "andromeda/core/system/event/type/window.hpp"
 #include "andromeda/core/system/event/manager.hpp"
+#include "andromeda/core/system/structure/bitmask.hpp"
 
 namespace Andromeda::System::Graphics::Display {
     class Window {
@@ -25,18 +25,16 @@ namespace Andromeda::System::Graphics::Display {
             Fullscreen = Andromeda::Numerics::Bit(5),
         };
         struct Callbacks {
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Move> move;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Resize> resize;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Close> close;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Refresh> refresh;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Focus> focus;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Defocus> defocus;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Maximize> maximize;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Minimize> minimize;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Restore> restore;
-
-            /* Input Callbacks */
-            Andromeda::System::Input::Manager::Callbacks input;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Move, const Window *> move;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Resize, const Window *> resize;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Close, const Window *> close;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Refresh, const Window *> refresh;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Focus, const Window *> focus;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Defocus, const Window *> defocus;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Maximize, const Window *> maximize;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Minimize, const Window *> minimize;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Restore, const Window *> restore;
+            Andromeda::System::Input::Manager::Callbacks<const Window *> input;
         };
         struct Configuration {
             std::string title;
@@ -44,6 +42,7 @@ namespace Andromeda::System::Graphics::Display {
             Viewport viewport;
             Options options;
             Callbacks * callbacks;
+            Window * window;
         };
       public:
         virtual ~Window() = default;

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "andromeda/core/system/event/type/monitor.hpp"
 #include "andromeda/core/system/event/manager.hpp"
+#include "andromeda/core/system/event/type/monitor.hpp"
 
 #include <string>
 
@@ -21,8 +21,8 @@ namespace Andromeda::System::Graphics::Display {
             int width, height;
         };
         struct Callbacks {
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Monitor::Connect> connect;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Monitor::Disconnect> disconnect;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Monitor::Connect, Monitor *> connect;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Monitor::Disconnect, Monitor *> disconnect;
         };
         struct Configuration {
             std::string title;
@@ -30,6 +30,7 @@ namespace Andromeda::System::Graphics::Display {
             Area area;
             Mode mode;
             Callbacks * callbacks;
+            Monitor * monitor;
         };
       public:
         virtual ~Monitor() = default;

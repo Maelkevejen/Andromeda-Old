@@ -7,7 +7,7 @@ TEST(Monitor, Types) {
         auto position = Andromeda::System::Graphics::Display::Monitor::Position({0, 0});
         auto area = Andromeda::System::Graphics::Display::Monitor::Area({0, 0, 800, 600});
         auto mode =  Andromeda::System::Graphics::Display::Monitor::Mode({128, 128, 128, 144, 800, 600});
-        auto configuration = Andromeda::System::Graphics::Display::Monitor::Configuration({"TEST", position, area, mode, {}});
+        auto configuration = Andromeda::System::Graphics::Display::Monitor::Configuration({"TEST", position, area, mode, {}, nullptr});
         EXPECT_TRUE(configuration.title == "TEST");
     });
 }

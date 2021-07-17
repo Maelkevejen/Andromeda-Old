@@ -1,6 +1,7 @@
 #include "andromeda/core/system/structure/bitmask.hpp"
 
 #include "andromeda/core/core.hpp"
+
 #include "gtest/gtest.h"
 
 enum class Test_Enum {

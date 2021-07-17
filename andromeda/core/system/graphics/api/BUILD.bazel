@@ -1,0 +1,28 @@
+# ::andromeda::core::system::graphics::engine
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "instance",
+    srcs = [
+        "engine.cpp",
+    ],
+    deps = [
+        ":engine",
+        "@andromeda//andromeda/core/system/log",
+        "@andromeda//andromeda/core/system/platform/graphics/vulkan/api:engine",
+    ],
+)
+
+cc_library(
+    name = "engine",
+    hdrs = [
+        "engine.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core",
+        "@andromeda//andromeda/core/system/structure:bitmask",
+    ],
+)

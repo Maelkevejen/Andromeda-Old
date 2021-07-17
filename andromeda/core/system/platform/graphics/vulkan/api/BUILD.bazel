@@ -1,0 +1,16 @@
+# ::andromeda::core::system::platform::vulkan::api
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "engine",
+    hdrs = [
+        "engine.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/graphics/api:engine",
+        "@andromeda//andromeda/core/system/graphics/renderer:context",
+    ],
+)

@@ -1,0 +1,15 @@
+# ::andromeda::core::system::graphics::api::renderer
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "context",
+    hdrs = [
+        "context.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/graphics/api:engine",
+    ],
+)
