@@ -20,7 +20,7 @@ build:debug --config=warning:all
 
 build:release --compilation_mode=opt
 build:release --config=assert:none
-build:release --config=log:critical
+build:release --config=log:error
 build:release --config=warning:all
 
 # Optional Flags                                                   [ Optional ]
