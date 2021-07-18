@@ -17,9 +17,9 @@ namespace Andromeda::System::Graphics::Display {
                 Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Instance::Display::Interrupt, const Manager *> interrupt;
                 Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Instance::Display::Terminate, const Manager *> terminate;
             };
-            Manager::Callbacks::Display * display;
-            Window::Callbacks * window;
-            Monitor::Callbacks * monitor;
+            std::shared_ptr<Manager::Callbacks::Display> display = std::make_shared<Manager::Callbacks::Display>();
+            std::shared_ptr<Window::Callbacks> window = std::make_shared<Window::Callbacks>();
+            std::shared_ptr<Monitor::Callbacks> monitor = std::make_shared<Monitor::Callbacks>();
         };
         struct Configuration {
             Callbacks callbacks;
