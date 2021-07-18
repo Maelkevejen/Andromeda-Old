@@ -1,0 +1,12 @@
+# ::andromeda::core::system::utilities::instrumentation
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "instrumentor",
+    hdrs = [
+        "instrumentor.hpp",
+    ],
+)

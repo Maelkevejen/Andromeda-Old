@@ -11,7 +11,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
         ~Window() override;
 
         void update() override;
-        
+
       public:
         bool pressed(Andromeda::System::Input::Code::Keyboard::Key key) const override;
         bool pressed(Andromeda::System::Input::Code::Keyboard::Mod mod) const override;

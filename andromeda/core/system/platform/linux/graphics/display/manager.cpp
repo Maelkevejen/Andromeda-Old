@@ -7,7 +7,6 @@
 #include <algorithm>
 #include <execution>
 
-#include <iostream>
 
 namespace Andromeda::System::Linux::Graphics::Display {
     Manager::Manager(Andromeda::System::Linux::Graphics::Display::Manager::Configuration configuration) : m_Configuration({configuration}) {
@@ -77,7 +76,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
                 m_Windows.erase(std::remove_if(std::execution::par_unseq, std::begin(m_Windows), std::end(m_Windows), [& window](const auto & m_Window) {
                     return window == m_Window.get();
                 }));
-                // TODO: Terminating the display manager when there are no windows left is no the desired behavior. TAGS: ANDROMEDA__EXPERIMENTAL
+                // TODO__ANDROMEDA: Terminating the display manager when there are no windows left might not be desired. TAGS: __ANDROMEDA__DESIGN__
                 if (m_Windows.empty()) {
                     ANDROMEDA_CORE_INFO("All Windows closed, calling terminate on Linux Display Manager.");
                     Andromeda::System::Event::Instance::Display::Terminate event;
@@ -88,7 +87,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
         });
 
         m_Configuration.callbacks.window->focus.listen([&](Andromeda::System::Event::Window::Focus, const Andromeda::System::Graphics::Display::Window * window) {
-            {   
+            {
                 m_Windows_Mutex.lock();
                 auto pivot = std::find_if(std::execution::par_unseq, std::begin(m_Windows), std::end(m_Windows), [&](const auto & m_Window) {
                     return window == m_Window.get();
