@@ -15,6 +15,7 @@ namespace Andromeda::System::Input {
         template<class ... Arguments>
         struct Mouse {
             Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Mouse::Move, Arguments ...> move;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Mouse::Drag, Arguments ...> drag;
             Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Mouse::Scroll, Arguments ...> scroll;
             Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Mouse::Button::Press, Arguments ...> press;
             Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Mouse::Button::Release, Arguments ...> release;

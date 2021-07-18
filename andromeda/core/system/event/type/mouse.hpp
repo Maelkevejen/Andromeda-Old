@@ -11,6 +11,11 @@ namespace Andromeda::System::Event {
             Move(System::Structure::Duo<double> position) : position({position}) {}
             System::Structure::Duo<double> position;
         };
+        struct Drag : public Event < Type::Drag, Group::Input + Group::Mouse > {
+            Drag(System::Structure::Duo<double> position, Andromeda::System::Input::Code::Mouse::Button button) : position({position}), button(button) {}
+            System::Structure::Duo<double> position;
+            Andromeda::System::Input::Code::Mouse::Button button;
+        };
         struct Scroll : public Event < Type::Scroll, Group::Input + Group::Mouse > {
             Scroll(System::Structure::Duo<double> offset) : offset({offset}) {}
             System::Structure::Duo<double> offset;
