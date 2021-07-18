@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <execution>
 
+#include <iostream>
+
 namespace Andromeda::System::Linux::Graphics::Display {
     Manager::Manager(Andromeda::System::Linux::Graphics::Display::Manager::Configuration configuration) : m_Configuration({configuration}) {
         ANDROMEDA_CORE_INFO("Constructing a Linux Display Manager.");
@@ -30,7 +32,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
     void Manager::update() {
         ANDROMEDA_CORE_TRACE("Updating Linux Display Manager.");
         glfwPollEvents();
-        std::for_each(std::execution::par_unseq, std::begin(m_Windows), std::end(m_Windows), [](auto & window) {
+        std::for_each(std::execution::par, std::begin(m_Windows), std::end(m_Windows), [](auto & window) {
             window->update();
         });
     }
@@ -58,32 +60,44 @@ namespace Andromeda::System::Linux::Graphics::Display {
     void Manager::create(Andromeda::System::Graphics::Display::Window::Configuration configuration) {
         ANDROMEDA_CORE_TRACE("Creating a Linux Window.");
         configuration.callbacks = m_Configuration.callbacks.window;
-        m_Windows.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Window>(configuration));
+        {
+            m_Windows_Mutex.lock();
+            m_Windows.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Window>(configuration));
+            m_Windows_Mutex.unlock();
+        }
     }
 
     void Manager::callbacks() {
         ANDROMEDA_CORE_INFO("Setting Linux Display Manager callbacks.");
 
         m_Configuration.callbacks.window->close.listen([&](Andromeda::System::Event::Window::Close, const Andromeda::System::Graphics::Display::Window * window) {
-            m_Windows.erase(std::remove_if(std::execution::par_unseq, std::begin(m_Windows), std::end(m_Windows), [& window](const auto & m_Window) {
-                return window == m_Window.get();
-            }));
-            // TODO: Terminating the display manager when there are no windows left is no the desired behavior. TAGS: ANDROMEDA__EXPERIMENTAL
-            Andromeda::System::Event::Instance::Display::Terminate event;
-            if (m_Windows.size() == 0) {
-                ANDROMEDA_CORE_INFO("All Windows closed, calling terminate on Linux Display Manager.");
-                m_Configuration.callbacks.display->terminate.transmit(event, this);
+            ANDROMEDA_CORE_INFO("Removing Window from Display Stack.");
+            {
+                m_Windows_Mutex.lock();
+                m_Windows.erase(std::remove_if(std::execution::par_unseq, std::begin(m_Windows), std::end(m_Windows), [& window](const auto & m_Window) {
+                    return window == m_Window.get();
+                }));
+                // TODO: Terminating the display manager when there are no windows left is no the desired behavior. TAGS: ANDROMEDA__EXPERIMENTAL
+                if (m_Windows.empty()) {
+                    ANDROMEDA_CORE_INFO("All Windows closed, calling terminate on Linux Display Manager.");
+                    Andromeda::System::Event::Instance::Display::Terminate event;
+                    m_Configuration.callbacks.display->terminate.transmit(event, this);
+                }
+                m_Windows_Mutex.unlock();
             }
         });
 
         m_Configuration.callbacks.window->focus.listen([&](Andromeda::System::Event::Window::Focus, const Andromeda::System::Graphics::Display::Window * window) {
-            auto pivot = std::find_if(std::execution::par, std::begin(m_Windows), std::end(m_Windows), [&](const auto & m_Window) {
-                return window == m_Window.get();
-            });
-
-            if (pivot != std::end(m_Windows)) {
-                ANDROMEDA_CORE_INFO("Moving Window to front of display stack.");
-                std::rotate(std::begin(m_Windows), pivot, pivot + 1);
+            {   
+                m_Windows_Mutex.lock();
+                auto pivot = std::find_if(std::execution::par_unseq, std::begin(m_Windows), std::end(m_Windows), [&](const auto & m_Window) {
+                    return window == m_Window.get();
+                });
+                if (pivot != std::end(m_Windows)) {
+                    ANDROMEDA_CORE_INFO("Moving Window to front of display stack.");
+                    std::rotate(std::begin(m_Windows), pivot, pivot + 1);
+                }
+                m_Windows_Mutex.unlock();
             }
         });
     }

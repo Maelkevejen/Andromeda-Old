@@ -6,6 +6,7 @@
 #include "andromeda/core/system/graphics/display/manager.hpp"
 
 #include <memory>
+#include <mutex>
 
 namespace Andromeda::System::Linux::Graphics::Display {
     class Manager : public Andromeda::System::Graphics::Display::Manager {
@@ -30,7 +31,10 @@ namespace Andromeda::System::Linux::Graphics::Display {
       private:
         Andromeda::System::Graphics::Display::Manager::Configuration m_Configuration;
       private:
+        std::mutex m_Monitor_Mutex;
         std::vector<std::unique_ptr<Andromeda::System::Graphics::Display::Monitor>> m_Monitors;
+      private:
+        std::mutex m_Windows_Mutex;
         std::vector<std::unique_ptr<Andromeda::System::Graphics::Display::Window>> m_Windows;
     };
 } /* Andromeda::System::Graphics::Display */

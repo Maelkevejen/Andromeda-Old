@@ -7,7 +7,6 @@ namespace Andromeda::System::Linux::Graphics::Display {
         glfwSetMonitorUserPointer(m_Native, & m_Configuration);
         ANDROMEDA_CORE_INFO("Obtaining Monitor.");
         configure();
-        callbacks();
     }
 
     void Monitor::update() {
@@ -28,7 +27,11 @@ namespace Andromeda::System::Linux::Graphics::Display {
             .height = mode->height,
         };
         m_Configuration.monitor = this;
-        ANDROMEDA_CORE_WARN("Stored *this* pointer in configuration state.");
+        ANDROMEDA_CORE_WARN("Stored Monitor {0}'s *this* pointer in configuration state.", m_Configuration.title);
+        glfwSetMonitorUserPointer(m_Native, & m_Configuration);
+
+        callbacks();
+
         ANDROMEDA_CORE_INFO("Obtained Monitor {0} @ [{1}, {2}] with Area [ position: ({3}, {4}), dimensions: ({5}, {6}) ] and Mode [ rgb: ({7}, {8}, {9}), frequency: {10}, dimensions ({11}, {12})].", m_Configuration.title, m_Configuration.position.x, m_Configuration.position.y, m_Configuration.area.x, m_Configuration.area.y, m_Configuration.area.width, m_Configuration.area.height, m_Configuration.mode.red, m_Configuration.mode.green, m_Configuration.mode.blue, m_Configuration.mode.frequency, m_Configuration.mode.width, m_Configuration.mode.height);
     }
 
@@ -55,4 +58,3 @@ namespace Andromeda::System::Linux::Graphics::Display {
     }
 
 } /* Andromeda::System::Linux::Graphics::Display */
-
