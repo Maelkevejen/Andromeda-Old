@@ -21,8 +21,8 @@ namespace Andromeda::System::Graphics::Display {
             int width, height;
         };
         struct Callbacks {
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Monitor::Connect, Monitor *> connect;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Monitor::Disconnect, Monitor *> disconnect;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Monitor::Connect, const Monitor *> connect;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Monitor::Disconnect, const Monitor *> disconnect;
         };
         struct Configuration {
             std::string title;

@@ -5,6 +5,16 @@ package(
 )
 
 cc_library(
+    name = "instance",
+    hdrs = [
+        "instance.hpp",
+    ],
+    deps = [
+        "@andromeda//andromeda/core/system/event",
+    ],
+)
+
+cc_library(
     name = "keyboard",
     hdrs = [
         "keyboard.hpp",

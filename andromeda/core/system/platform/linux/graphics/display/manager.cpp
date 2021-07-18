@@ -62,6 +62,16 @@ namespace Andromeda::System::Linux::Graphics::Display {
 
     void Manager::callbacks() {
         ANDROMEDA_CORE_INFO("Setting Linux Display Manager callbacks.");
+
+        m_Configuration.callbacks.window->close.listen([&](Andromeda::System::Event::Window::Close, const Andromeda::System::Graphics::Display::Window * window) {
+            m_Windows.erase(std::remove_if(std::execution::par_unseq, std::begin(m_Windows), std::end(m_Windows), [& window](const auto & m_Window) {
+                return window == m_Window.get();
+            }));
+            // TODO: Terminating the display manager when there are no windows left is no the desired behavior. TAGS: ANDROMEDA__EXPERIMENTAL
+            Andromeda::System::Event::Instance::Display::Terminate event;
+            if (m_Windows.size() == 0) m_Configuration.callbacks.display->terminate.transmit(event, this);
+        });
+
         m_Configuration.callbacks.window->focus.listen([&](Andromeda::System::Event::Window::Focus, const Andromeda::System::Graphics::Display::Window * window) {
             auto pivot = std::find_if(std::execution::par, std::begin(m_Windows), std::end(m_Windows), [&](const auto & m_Window) {
                 return window == m_Window.get();
