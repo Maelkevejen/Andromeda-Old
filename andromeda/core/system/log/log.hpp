@@ -22,16 +22,12 @@ namespace Andromeda::System {
         Log() = delete;
         static void initialize(Log::Configuration configuration);
         static void shutdown() {
-            s_Core->flush();
-            s_Instance->flush();
-            s_Core.reset();
-            s_Instance.reset();
             spdlog::shutdown();
         }
-        static std::shared_ptr<spdlog::logger> & core() {
+        static const std::shared_ptr<spdlog::logger> & core() {
             return s_Core;
         }
-        static std::shared_ptr<spdlog::logger> & instance() {
+        static const std::shared_ptr<spdlog::logger> & instance() {
             return s_Instance;
         }
       private:
