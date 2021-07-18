@@ -11,7 +11,7 @@ namespace Andromeda::System::Event {
         Connect, Disconnect,
         Move, Close, Resize, Refresh, Focus, Defocus, Maximize, Minimize, Restore,
         Press, Release, Type,
-        Scroll,
+        Drag, Scroll,
     };
 
     enum class Group {
