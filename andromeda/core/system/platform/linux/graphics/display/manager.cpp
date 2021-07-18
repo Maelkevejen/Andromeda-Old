@@ -31,7 +31,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
     void Manager::update() {
         ANDROMEDA_CORE_TRACE("Updating Linux Display Manager.");
         glfwPollEvents();
-        std::for_each(std::execution::par, std::begin(m_Windows), std::end(m_Windows), [](auto & window) {
+        std::for_each(std::execution::par_unseq, std::begin(m_Windows), std::end(m_Windows), [](auto & window) {
             window->update();
         });
     }
