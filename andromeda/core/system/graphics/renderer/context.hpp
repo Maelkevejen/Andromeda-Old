@@ -7,6 +7,6 @@ namespace Andromeda::System::Graphics::Renderer {
       public:
         virtual ~Context() = default;
 
-        static std::unique_ptr<Context> instantiate(Andromeda::System::Graphics::Engine::Type type);
+        static std::unique_ptr<Context> instantiate();
     };
 } /* Andromeda::System::Graphics::Engine */
