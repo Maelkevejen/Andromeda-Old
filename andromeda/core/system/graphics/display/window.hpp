@@ -41,7 +41,7 @@ namespace Andromeda::System::Graphics::Display {
             Position position;
             Viewport viewport;
             Options options;
-            Callbacks * callbacks;
+            std::shared_ptr<Callbacks> callbacks = std::make_shared<Callbacks>();
             Window * window;
         };
       public:
