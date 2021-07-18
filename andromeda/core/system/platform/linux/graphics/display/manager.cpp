@@ -11,6 +11,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
     Manager::Manager(Andromeda::System::Linux::Graphics::Display::Manager::Configuration configuration) : m_Configuration({configuration}) {
         ANDROMEDA_CORE_INFO("Constructing a Linux Display Manager.");
         initialize();
+        callbacks();
     }
     Manager::~Manager() {
         ANDROMEDA_CORE_INFO("Terminating a Linux Display Manager.");
@@ -69,7 +70,10 @@ namespace Andromeda::System::Linux::Graphics::Display {
             }));
             // TODO: Terminating the display manager when there are no windows left is no the desired behavior. TAGS: ANDROMEDA__EXPERIMENTAL
             Andromeda::System::Event::Instance::Display::Terminate event;
-            if (m_Windows.size() == 0) m_Configuration.callbacks.display->terminate.transmit(event, this);
+            if (m_Windows.size() == 0) {
+                ANDROMEDA_CORE_INFO("All Windows closed, calling terminate on Linux Display Manager.");
+                m_Configuration.callbacks.display->terminate.transmit(event, this);
+            }
         });
 
         m_Configuration.callbacks.window->focus.listen([&](Andromeda::System::Event::Window::Focus, const Andromeda::System::Graphics::Display::Window * window) {
@@ -77,7 +81,10 @@ namespace Andromeda::System::Linux::Graphics::Display {
                 return window == m_Window.get();
             });
 
-            if (pivot != std::end(m_Windows)) std::rotate(std::begin(m_Windows), pivot, pivot + 1);
+            if (pivot != std::end(m_Windows)) {
+                ANDROMEDA_CORE_INFO("Moving Window to front of display stack.");
+                std::rotate(std::begin(m_Windows), pivot, pivot + 1);
+            }
         });
     }
 } /* Andromeda::System::Graphics::Display */
