@@ -10,7 +10,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
 
     Window::~Window() {
         ANDROMEDA_CORE_INFO("Destroying Window {0}.", m_Configuration.title);
-        if(m_Native) glfwDestroyWindow(m_Native); 
+        if (m_Native) glfwDestroyWindow(m_Native);
     }
 
     void Window::initialize() {
@@ -23,7 +23,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
         if (m_Configuration.options >= Window::Options::Fullscreen) fullscreen();
 
         ANDROMEDA_CORE_ASSERT(m_Native != nullptr, "Window not created, native pointer is nullified.");
-        
+
         ANDROMEDA_CORE_WARN("Stored Window {0}'s *this* pointer in configuration state.", m_Configuration.title);
         m_Configuration.window = this;
         glfwSetWindowUserPointer(m_Native, & m_Configuration);
