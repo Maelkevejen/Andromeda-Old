@@ -12,6 +12,10 @@
 #include "andromeda/core/system/graphics/display/monitor.hpp"
 #include "andromeda/core/system/graphics/display/window.hpp"
 
+#include "andromeda/core/system/input/manager.hpp"
+#include "andromeda/core/system/input/code/key.hpp"
+#include "andromeda/core/system/input/code/mouse.hpp"
+
 #include "andromeda/core/system/log/log.hpp"
 
 #include "andromeda/core/system/structure/bitmask.hpp"
