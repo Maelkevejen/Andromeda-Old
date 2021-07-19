@@ -14,7 +14,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
     }
 
     void Window::initialize() {
-        ANDROMEDA_CORE_INFO("Window Confuration Options {5}:\n\t\tDecorated: {0}\n\t\tResizable: {1}\n\t\tVisible: {2}\n\t\tFloating: {3}\n\t\tFullscreen: {4}.", (m_Configuration.options >> Options::Decorated), (m_Configuration.options >> Options::Resizable), (m_Configuration.options >> Options::Visible), (m_Configuration.options >> Options::Floating), (m_Configuration.options >> Options::Fullscreen), m_Configuration.options);
+        ANDROMEDA_CORE_INFO("Window Confuration Options:\n\t\tDecorated: {0}\n\t\tResizable: {1}\n\t\tVisible: {2}\n\t\tFloating: {3}\n\t\tFullscreen: {4}.", (m_Configuration.options >> Options::Decorated), (m_Configuration.options >> Options::Resizable), (m_Configuration.options >> Options::Visible), (m_Configuration.options >> Options::Floating), (m_Configuration.options >> Options::Fullscreen));
         glfwWindowHint(GLFW_DECORATED, m_Configuration.options >> Options::Decorated);
         glfwWindowHint(GLFW_RESIZABLE, m_Configuration.options >> Options::Resizable);
         glfwWindowHint(GLFW_VISIBLE, m_Configuration.options >> Options::Visible);
