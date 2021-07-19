@@ -114,6 +114,9 @@ build:sanitizer --strip=never
 build:sanitizer --force_ignore_dash_static
 build:sanitizer --test_timeout=120,600,1800,-1
 build:sanitizer --cxxopt=-fno-omit-frame-pointer
+# TODO__ANDROMEDA: https://libcxx.llvm.org/Status/Cxx20.html __ANDROMEDA__FUTURE__
+# build:sanitizer --cxxopt=-stdlib=libc++ 
+
 
 ###############################################################################
 # .bazelrc workspace & user overrides                                 [ Bazel ]

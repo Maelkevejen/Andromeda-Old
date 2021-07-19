@@ -25,16 +25,16 @@ namespace Andromeda::System::Graphics::Display {
             Fullscreen = Andromeda::Numerics::Bit(5),
         };
         struct Callbacks {
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Move, const Window *> move;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Resize, const Window *> resize;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Close, const Window *> close;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Refresh, const Window *> refresh;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Focus, const Window *> focus;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Defocus, const Window *> defocus;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Maximize, const Window *> maximize;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Minimize, const Window *> minimize;
-            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Restore, const Window *> restore;
-            Andromeda::System::Input::Manager::Callbacks<const Window *> input;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Move, Window *> move;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Resize, Window *> resize;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Close, Window *> close;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Refresh, Window *> refresh;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Focus, Window *> focus;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Defocus, Window *> defocus;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Maximize, Window *> maximize;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Minimize, Window *> minimize;
+            Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Window::Restore, Window *> restore;
+            Andromeda::System::Input::Manager::Callbacks<Window *> input;
         };
         struct Configuration {
             std::string title;
