@@ -20,14 +20,15 @@ namespace Andromeda::System::Event::Manager {
             m_Awaiters.push_back(callback);
         }
         void deafen(Callback callback) {
-            m_Callbacks.erase(std::remove_if(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [& callback](const Callback & other) {
+            std::erase_if(m_Callbacks, [& callback](const Callback & other) {
                 return callback.template target<Callback>() == other.template target<Callback>();
-            }));
+            });
         }
         void transmit(Event event, Arguments ... arguments) {
             std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [event = std::forward<Event>(event), ... arguments = std::forward<Arguments>(arguments)](const Callback & callback) {
                 callback(event, arguments ...);
             });
+            // TODO__ANDROMEDA: The loop above and below are completely independent, consider separating them into seperate calls or seperate threads. TAGS: __ANDROMEDA__CONCURRENCY__
             std::for_each(std::execution::par_unseq, std::begin(m_Awaiters), std::end(m_Awaiters), [event = std::forward<Event>(event), ... arguments = std::forward<Arguments>(arguments)](const Callback & callback) {
                 callback(event, arguments ...);
             });
@@ -47,9 +48,9 @@ namespace Andromeda::System::Event::Manager {
             m_Callbacks.push_back(callback);
         }
         void deafen(Callback callback) {
-            m_Callbacks.erase(std::remove_if(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [& callback](const Callback & other) {
+            std::erase_if(m_Callbacks, [& callback](const Callback & other) {
                 return callback.template target<Callback>() == other.template target<Callback>();
-            }));
+            });
         }
         void queue(Event event) {
             m_Events.push_back(event);

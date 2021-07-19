@@ -14,7 +14,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
     }
 
     void Window::initialize() {
-        ANDROMEDA_CORE_INFO("Window Confuration Options {5}:\n\t\tDecorated: {0}\n\t\tResizable: {1}\n\t\tVisible: {2}\n\t\tFloating: {3}\n\t\tFullscreen: {4}.", (m_Configuration.options >> Options::Decorated), (m_Configuration.options >> Options::Resizable),  (m_Configuration.options >> Options::Visible), (m_Configuration.options >> Options::Floating), (m_Configuration.options >> Options::Fullscreen), m_Configuration.options);
+        ANDROMEDA_CORE_INFO("Window Confuration Options {5}:\n\t\tDecorated: {0}\n\t\tResizable: {1}\n\t\tVisible: {2}\n\t\tFloating: {3}\n\t\tFullscreen: {4}.", (m_Configuration.options >> Options::Decorated), (m_Configuration.options >> Options::Resizable), (m_Configuration.options >> Options::Visible), (m_Configuration.options >> Options::Floating), (m_Configuration.options >> Options::Fullscreen), m_Configuration.options);
         glfwWindowHint(GLFW_DECORATED, m_Configuration.options >> Options::Decorated);
         glfwWindowHint(GLFW_RESIZABLE, m_Configuration.options >> Options::Resizable);
         glfwWindowHint(GLFW_VISIBLE, m_Configuration.options >> Options::Visible);
@@ -63,10 +63,12 @@ namespace Andromeda::System::Linux::Graphics::Display {
         m_Native = glfwCreateWindow(m_Configuration.viewport.width, m_Configuration.viewport.height, m_Configuration.title.data(), nullptr, nullptr);
         glfwSetWindowPos(m_Native, m_Configuration.position.x, m_Configuration.position.y);
     }
+
     void Window::fullscreen() {
-        ANDROMEDA_CORE_INFO("Window {0} as fullscreen on Monitor {1}.", m_Configuration.title, "Primary");
+        ANDROMEDA_CORE_INFO("Window {0} as fullscreen on Primary Monitor.", m_Configuration.title);
         m_Native = glfwCreateWindow(m_Configuration.viewport.width, m_Configuration.viewport.height, m_Configuration.title.data(), glfwGetPrimaryMonitor(), nullptr);
     }
+
     void Window::callbacks() {
         ANDROMEDA_CORE_INFO("Setting Window {0} callbacks.", m_Configuration.title);
 

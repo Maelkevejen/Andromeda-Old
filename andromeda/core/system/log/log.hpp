@@ -11,15 +11,19 @@ namespace Andromeda::System {
     class Log {
       public:
         struct Configuration {
-            const std::string name;
-            const std::filesystem::path log_directory;
-            const std::size_t max_log_files;
-            const std::size_t max_log_file_size;
-            const std::size_t threads;
-            const std::size_t workers;
+            const std::string name = "log";
+            const std::filesystem::path log_directory = "logging/andromeda.log";
+            const std::size_t max_log_files = 1;
+            const std::size_t max_log_file_size = 1024;
+            const std::size_t threads = 1;
+            const std::size_t workers = 1;
         };
       public:
-        Log() = delete;
+        Log(const Log&) = delete;
+        Log& operator=(const Log &) = delete;
+        Log(Log &&) = delete;
+        Log & operator=(Log &&) = delete;
+
         static void initialize(Log::Configuration configuration);
         static void shutdown() {
             spdlog::shutdown();
@@ -31,6 +35,9 @@ namespace Andromeda::System {
             return s_Instance;
         }
       private:
+
+        Log() = delete;
+
         inline static std::shared_ptr<spdlog::logger> s_Core = nullptr;
         inline static std::shared_ptr<spdlog::logger> s_Instance = nullptr;
     };

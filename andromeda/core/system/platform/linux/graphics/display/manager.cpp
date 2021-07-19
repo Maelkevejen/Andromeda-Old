@@ -7,17 +7,18 @@
 #include <algorithm>
 #include <execution>
 
-
 namespace Andromeda::System::Linux::Graphics::Display {
     Manager::Manager(Andromeda::System::Linux::Graphics::Display::Manager::Configuration configuration) : m_Configuration({configuration}) {
         ANDROMEDA_CORE_INFO("Constructing a Linux Display Manager.");
         initialize();
         callbacks();
     }
+
     Manager::~Manager() {
         ANDROMEDA_CORE_INFO("Terminating a Linux Display Manager.");
         glfwTerminate();
     }
+
     void Manager::initialize() {
         [[ maybe_unused ]] auto glfw = glfwInit();
         ANDROMEDA_CORE_ASSERT_MESSAGE(glfw == GLFW_TRUE, "Failed to initialize GLFW, code: {0}.", glfw);
@@ -28,6 +29,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
         for (int monitor = 0; monitor < count; monitor++) m_Monitors.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Monitor>(Andromeda::System::Graphics::Display::Monitor::Configuration {.callbacks = m_Configuration.callbacks.monitor}, monitors[monitor]));
         ANDROMEDA_CORE_INFO("Initialzed {0} monitors.", m_Monitors.size());
     }
+
     void Manager::update() {
         ANDROMEDA_CORE_TRACE("Updating Linux Display Manager.");
         glfwPollEvents();
@@ -73,9 +75,9 @@ namespace Andromeda::System::Linux::Graphics::Display {
             ANDROMEDA_CORE_INFO("Removing Window from Display Stack.");
             {
                 m_Windows_Mutex.lock();
-                m_Windows.erase(std::remove_if(std::execution::par_unseq, std::begin(m_Windows), std::end(m_Windows), [& window](const auto & m_Window) {
+                std::erase_if(m_Windows, [& window](const auto & m_Window) {
                     return window == m_Window.get();
-                }));
+                });
                 // TODO__ANDROMEDA: Terminating the display manager when there are no windows left might not be desired. TAGS: __ANDROMEDA__DESIGN__
                 if (m_Windows.empty()) {
                     ANDROMEDA_CORE_INFO("All Windows closed, calling terminate on Linux Display Manager.");
