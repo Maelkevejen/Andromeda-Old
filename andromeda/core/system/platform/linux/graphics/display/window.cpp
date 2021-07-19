@@ -14,13 +14,14 @@ namespace Andromeda::System::Linux::Graphics::Display {
     }
 
     void Window::initialize() {
-        glfwWindowHint(GLFW_DECORATED, m_Configuration.options >= Options::Decorated);
-        glfwWindowHint(GLFW_RESIZABLE, m_Configuration.options >= Options::Resizable);
-        glfwWindowHint(GLFW_VISIBLE, m_Configuration.options >= Options::Visible);
-        glfwWindowHint(GLFW_FLOATING, m_Configuration.options >= Options::Floating);
+        ANDROMEDA_CORE_INFO("Window Confuration Options {5}:\n\t\tDecorated: {0}\n\t\tResizable: {1}\n\t\tVisible: {2}\n\t\tFloating: {3}\n\t\tFullscreen: {4}.", (m_Configuration.options >> Options::Decorated), (m_Configuration.options >> Options::Resizable),  (m_Configuration.options >> Options::Visible), (m_Configuration.options >> Options::Floating), (m_Configuration.options >> Options::Fullscreen), m_Configuration.options);
+        glfwWindowHint(GLFW_DECORATED, m_Configuration.options >> Options::Decorated);
+        glfwWindowHint(GLFW_RESIZABLE, m_Configuration.options >> Options::Resizable);
+        glfwWindowHint(GLFW_VISIBLE, m_Configuration.options >> Options::Visible);
+        glfwWindowHint(GLFW_FLOATING, m_Configuration.options >> Options::Floating);
 
-        if (m_Configuration.options >= Window::Options::Subscreen) subscreen();
-        if (m_Configuration.options >= Window::Options::Fullscreen) fullscreen();
+        if (m_Configuration.options >> Window::Options::Subscreen) subscreen();
+        if (m_Configuration.options >> Window::Options::Fullscreen) fullscreen();
 
         ANDROMEDA_CORE_ASSERT(m_Native != nullptr, "Window not created, native pointer is nullified.");
 
