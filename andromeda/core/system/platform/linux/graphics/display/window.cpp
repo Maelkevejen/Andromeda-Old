@@ -64,6 +64,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
     }
     void Window::fullscreen() {
         ANDROMEDA_CORE_INFO("Window {0} as fullscreen on Monitor {1}.", m_Configuration.title, "Undefined");
+        m_Native = glfwCreateWindow(m_Configuration.viewport.width, m_Configuration.viewport.height, m_Configuration.title.data(), glfwGetPrimaryMonitor(), nullptr);
     }
     void Window::callbacks() {
         ANDROMEDA_CORE_INFO("Setting Window {0} callbacks.", m_Configuration.title);
