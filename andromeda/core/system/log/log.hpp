@@ -19,8 +19,8 @@ namespace Andromeda::System {
             const std::size_t workers = 1;
         };
       public:
-        Log(const Log&) = delete;
-        Log& operator=(const Log &) = delete;
+        Log(const Log &) = delete;
+        Log & operator=(const Log &) = delete;
         Log(Log &&) = delete;
         Log & operator=(Log &&) = delete;
 
@@ -35,7 +35,6 @@ namespace Andromeda::System {
             return s_Instance;
         }
       private:
-
         Log() = delete;
 
         inline static std::shared_ptr<spdlog::logger> s_Core = nullptr;
