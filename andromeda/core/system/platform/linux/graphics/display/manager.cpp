@@ -99,14 +99,6 @@ namespace Andromeda::System::Linux::Graphics::Display {
                 m_Windows_Mutex.unlock();
             }
         });
-
-        m_Configuration.callbacks.window->input.mouse.press.listen([&](Andromeda::System::Event::Mouse::Button::Press press, const Andromeda::System::Graphics::Display::Window *){
-            m_Configuration.callbacks.window->input.mouse.move.listen([&](Andromeda::System::Event::Mouse::Move move, const Andromeda::System::Graphics::Display::Window * window){
-                ANDROMEDA_CORE_INFO("Mouse dragged to ({0}, {1}) relative to Window.", move.position.α, move.position.β);
-                Andromeda::System::Event::Mouse::Drag event({move.position, press.button});
-                m_Configuration.callbacks.window->input.mouse.drag.transmit(event, window);
-            });
-        });
     }
 } /* Andromeda::System::Graphics::Display */
 
