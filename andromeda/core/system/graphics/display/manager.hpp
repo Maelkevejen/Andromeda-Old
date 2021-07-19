@@ -12,10 +12,10 @@ namespace Andromeda::System::Graphics::Display {
       public:
         struct Callbacks {
             struct Display {
-                Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Instance::Display::Update, const Manager *> update;
-                Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Instance::Display::Initialize, const Manager *> initialize;
-                Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Instance::Display::Interrupt, const Manager *> interrupt;
-                Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Instance::Display::Terminate, const Manager *> terminate;
+                Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Instance::Display::Update, Manager *> update;
+                Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Instance::Display::Initialize, Manager *> initialize;
+                Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Instance::Display::Interrupt, Manager *> interrupt;
+                Andromeda::System::Event::Manager::Serial<Andromeda::System::Event::Instance::Display::Terminate, Manager *> terminate;
             };
             std::shared_ptr<Manager::Callbacks::Display> display = std::make_shared<Manager::Callbacks::Display>();
             std::shared_ptr<Window::Callbacks> window = std::make_shared<Window::Callbacks>();
