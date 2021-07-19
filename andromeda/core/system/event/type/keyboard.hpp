@@ -8,10 +8,10 @@ namespace Andromeda::System::Event {
         struct Press : public Event < Andromeda::System::Event::Type::Press, Andromeda::System::Event::Group::Input + Andromeda::System::Event::Group::Keyboard > {
             Press(Andromeda::System::Input::Code::Keyboard::Key key, Andromeda::System::Input::Code::Keyboard::Mod mod, int repeats) : key(key), mod(mod), repeats(repeats) {}
             Press(Andromeda::System::Input::Code::Keyboard::Key key, int repeats) : key(key), repeats(repeats) {}
-            Press(Andromeda::System::Input::Code::Keyboard::Key key) : key(key), repeats(0) {}
+            Press(Andromeda::System::Input::Code::Keyboard::Key key) : key(key) {}
             Andromeda::System::Input::Code::Keyboard::Key key;
             Andromeda::System::Input::Code::Keyboard::Mod mod;
-            int repeats;
+            int repeats = 0;
         };
         struct Release : public Event < Andromeda::System::Event::Type::Release, Andromeda::System::Event::Group::Input + Andromeda::System::Event::Group::Keyboard > {
             Release(Andromeda::System::Input::Code::Keyboard::Key key, Andromeda::System::Input::Code::Keyboard::Mod mod) : key(key), mod(mod) {}
