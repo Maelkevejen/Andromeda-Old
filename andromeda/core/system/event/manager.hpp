@@ -16,6 +16,9 @@ namespace Andromeda::System::Event::Manager {
         void listen(Callback callback) {
             m_Callbacks.push_back(callback);
         }
+        void await(Callback callback) {
+            m_Awaiters.push_back(callback);
+        }
         void deafen(Callback callback) {
             m_Callbacks.erase(std::remove_if(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [& callback](const Callback & other) {
                 return callback.template target<Callback>() == other.template target<Callback>();
@@ -25,9 +28,14 @@ namespace Andromeda::System::Event::Manager {
             std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [event = std::forward<Event>(event), ... arguments = std::forward<Arguments>(arguments)](const Callback & callback) {
                 callback(event, arguments ...);
             });
+            std::for_each(std::execution::par_unseq, std::begin(m_Awaiters), std::end(m_Awaiters), [event = std::forward<Event>(event), ... arguments = std::forward<Arguments>(arguments)](const Callback & callback) {
+                callback(event, arguments ...);
+            });
+            m_Awaiters.clear();
         }
       private:
         std::vector<Callback> m_Callbacks;
+        std::vector<Callback> m_Awaiters;
     };
 
     template <class Event, class ... Arguments>
@@ -71,6 +79,7 @@ namespace Andromeda::System::Event::Manager {
             std::for_each(std::execution::par_unseq, std::begin(m_Callbacks), std::end(m_Callbacks), [ &, back = std::forward<Event>(back), ... arguments = std::forward<Arguments>(arguments)](const Callback & callback) {
                 callback(back, arguments ...);
             });
+            deque();
         }
       private:
         std::vector<Callback> m_Callbacks;
