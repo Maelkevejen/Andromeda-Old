@@ -58,12 +58,12 @@ namespace Andromeda::System::Linux::Graphics::Display {
     }
 
     void Window::subscreen() {
-        ANDROMEDA_CORE_INFO("Window {0} as subscreen on undefined monitor.", m_Configuration.title);
+        ANDROMEDA_CORE_INFO("Window {0} as subscreen.", m_Configuration.title);
         m_Native = glfwCreateWindow(m_Configuration.viewport.width, m_Configuration.viewport.height, m_Configuration.title.data(), nullptr, nullptr);
         glfwSetWindowPos(m_Native, m_Configuration.position.x, m_Configuration.position.y);
     }
     void Window::fullscreen() {
-        ANDROMEDA_CORE_INFO("Window {0} as fullscreen on Monitor {1}.", m_Configuration.title, "Undefined");
+        ANDROMEDA_CORE_INFO("Window {0} as fullscreen on Monitor {1}.", m_Configuration.title, "Primary");
         m_Native = glfwCreateWindow(m_Configuration.viewport.width, m_Configuration.viewport.height, m_Configuration.title.data(), glfwGetPrimaryMonitor(), nullptr);
     }
     void Window::callbacks() {
