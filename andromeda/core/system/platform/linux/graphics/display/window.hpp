@@ -7,10 +7,12 @@
 namespace Andromeda::System::Linux::Graphics::Display {
     class Window : public Andromeda::System::Graphics::Display::Window {
       public:
-        Window(Window::Configuration configuration);
+        Window(Window::Configuration configuration, Window::Callbacks * callbacks);
         ~Window() override;
 
         void update() override;
+
+        Window::Configuration configuration() const override;
 
       public:
         bool pressed(Andromeda::System::Input::Code::Keyboard::Key key) const override;
@@ -27,6 +29,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
         void callbacks();
       private:
         Window::Configuration m_Configuration;
+        Window::Data m_Data;
         GLFWwindow * m_Native;
     };
 } /* Andromeda::System::Linux::Graphics::Display */

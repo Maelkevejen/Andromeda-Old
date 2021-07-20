@@ -26,7 +26,7 @@ namespace Andromeda::System::Linux::Graphics::Display {
         int count = 0;
         auto monitors = glfwGetMonitors(& count);
 
-        for (int monitor = 0; monitor < count; monitor++) m_Monitors.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Monitor>(Andromeda::System::Graphics::Display::Monitor::Configuration {.callbacks = m_Configuration.callbacks.monitor}, monitors[monitor]));
+        for (int monitor = 0; monitor < count; monitor++) m_Monitors.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Monitor>(Andromeda::System::Graphics::Display::Monitor::Data {.callbacks = m_Configuration.callbacks.monitor.get()}, monitors[monitor]));
         ANDROMEDA_CORE_INFO("Initialzed {0} monitors.", m_Monitors.size());
     }
 
@@ -60,10 +60,9 @@ namespace Andromeda::System::Linux::Graphics::Display {
 
     void Manager::create(Andromeda::System::Graphics::Display::Window::Configuration configuration) {
         ANDROMEDA_CORE_TRACE("Creating a Linux Window.");
-        configuration.callbacks = m_Configuration.callbacks.window;
         {
             m_Windows_Mutex.lock();
-            m_Windows.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Window>(configuration));
+            m_Windows.push_back(std::make_unique<Andromeda::System::Linux::Graphics::Display::Window>(configuration, m_Configuration.callbacks.window.get()));
             m_Windows_Mutex.unlock();
         }
     }
