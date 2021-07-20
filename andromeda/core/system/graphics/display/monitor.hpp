@@ -29,12 +29,17 @@ namespace Andromeda::System::Graphics::Display {
             Position position;
             Area area;
             Mode mode;
-            std::shared_ptr<Callbacks> callbacks = std::make_shared<Callbacks>();
+        };
+        struct Data {
+            Callbacks * callbacks;
             Monitor * monitor;
         };
+
       public:
         virtual ~Monitor() = default;
 
         virtual void update() = 0;
+
+        virtual Monitor::Configuration configuration() const = 0;
     };
 } /* Andromeda::System::Graphics::Display */

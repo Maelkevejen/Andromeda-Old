@@ -3,14 +3,17 @@
 #include "andromeda/core/system/log/log.hpp"
 
 namespace Andromeda::System::Linux::Graphics::Display {
-    Monitor::Monitor(Andromeda::System::Graphics::Display::Monitor::Configuration configuration, GLFWmonitor * monitor) : m_Configuration(configuration), m_Native(monitor) {
-        glfwSetMonitorUserPointer(m_Native, & m_Configuration);
+    Monitor::Monitor(Andromeda::System::Graphics::Display::Monitor::Data data, GLFWmonitor * monitor) : m_Data(data), m_Native(monitor) {
         ANDROMEDA_CORE_INFO("Obtaining Monitor.");
         configure();
     }
 
     void Monitor::update() {
 
+    }
+
+    Monitor::Configuration Monitor::configuration() const {
+        return m_Configuration;
     }
 
     void Monitor::configure() {
@@ -26,9 +29,9 @@ namespace Andromeda::System::Linux::Graphics::Display {
             .width = mode->width,
             .height = mode->height,
         };
-        m_Configuration.monitor = this;
         ANDROMEDA_CORE_WARN("Stored Monitor {0}'s *this* pointer in configuration state.", m_Configuration.title);
-        glfwSetMonitorUserPointer(m_Native, & m_Configuration);
+        m_Data.monitor = this;
+        glfwSetMonitorUserPointer(m_Native, & m_Data);
 
         callbacks();
 
@@ -37,20 +40,20 @@ namespace Andromeda::System::Linux::Graphics::Display {
 
     void Monitor::callbacks() {
         ANDROMEDA_CORE_INFO("Setting Monitor {0} callbacks.", m_Configuration.title);
-        glfwSetMonitorCallback([](GLFWmonitor * monitor, int event) {
-            auto configuration = static_cast<Monitor::Configuration *>(glfwGetMonitorUserPointer(monitor));
+        glfwSetMonitorCallback([](GLFWmonitor * native, int event) {
+            auto data = static_cast<Monitor::Data *>(glfwGetMonitorUserPointer(native));
 
             switch (event) {
                 case GLFW_CONNECTED: {
                     Andromeda::System::Event::Monitor::Connect event;
-                    configuration->callbacks->connect.transmit(event, configuration->monitor);
-                    ANDROMEDA_CORE_TRACE("Connected Monitor {0}.", configuration->title);
+                    data->callbacks->connect.transmit(event, data->monitor);
+                    ANDROMEDA_CORE_TRACE("Connected Monitor {0}.", data->monitor->configuration().title);
                     break;
                 }
                 case GLFW_DISCONNECTED: {
                     Andromeda::System::Event::Monitor::Disconnect event;
-                    configuration->callbacks->disconnect.transmit(event, configuration->monitor);
-                    ANDROMEDA_CORE_TRACE("Disconnected Monitor {0}.", configuration->title);
+                    data->callbacks->disconnect.transmit(event, data->monitor);
+                    ANDROMEDA_CORE_TRACE("Disconnected Monitor {0}.", data->monitor->configuration().title);
                     break;
                 }
             }

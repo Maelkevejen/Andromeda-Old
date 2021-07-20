@@ -41,13 +41,17 @@ namespace Andromeda::System::Graphics::Display {
             Position position;
             Viewport viewport;
             Options options;
-            std::shared_ptr<Callbacks> callbacks = std::make_shared<Callbacks>();
+        };
+        struct Data {
+            Callbacks * callbacks;
             Window * window;
         };
       public:
         virtual ~Window() = default;
 
         virtual void update() = 0;
+
+        virtual Window::Configuration configuration() const = 0;
 
       public:
         virtual bool pressed(Andromeda::System::Input::Code::Keyboard::Key key) const = 0;
