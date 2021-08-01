@@ -4,7 +4,7 @@
 
 namespace Andromeda::System::Linux::Graphics::Display {
     Window::Window(Window::Configuration configuration) : m_Configuration({configuration}) {
-        ANDROMEDA_CORE_INFO("Constructing Window {0} @ [{1}, {2}] with resolution [{3, 4}].", m_Configuration.title, m_Configuration.position.x, m_Configuration.position.y, m_Configuration.viewport.width, m_Configuration.viewport.height);
+        ANDROMEDA_CORE_INFO("Constructing Window {0} @ [{1}, {2}] with resolution [{3}, {4}].", m_Configuration.title, m_Configuration.position.x, m_Configuration.position.y, m_Configuration.viewport.width, m_Configuration.viewport.height);
         initialize();
     }
 
